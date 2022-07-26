@@ -1,0 +1,18 @@
+query macchine {
+  macchine{
+    id
+    codice
+    descrizione
+    tipo
+    lavorazioni{
+        stato
+        quantita
+        rigaCommessa{
+            prodotto{
+                codice
+                descrizione
+            }
+        }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+mutation macchinaRemove ($id:Int){
+  macchinaRemove(id:$id)
+}

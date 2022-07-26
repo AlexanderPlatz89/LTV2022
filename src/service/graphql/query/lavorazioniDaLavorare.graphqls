@@ -1,0 +1,21 @@
+query lavorazioniDaLavorare{
+  lavorazioniDaLavorare{
+    id,
+    stato,
+    quantita,
+    rigaCommessa{
+        commessa{
+            codice,
+            dataConsegna
+        }
+        prodotto{
+            id
+            codice
+            descrizione
+        }
+    }
+    macchina{
+        id
+    }
+  }
+}

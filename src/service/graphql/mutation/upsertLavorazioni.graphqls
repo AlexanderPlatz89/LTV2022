@@ -1,0 +1,6 @@
+mutation upsertLavorazioni($lavorazioni:[LavorazioneInput]){
+  upsertLavorazioni(lavorazioni:$lavorazioni){
+    id
+    oldId
+  }
+}

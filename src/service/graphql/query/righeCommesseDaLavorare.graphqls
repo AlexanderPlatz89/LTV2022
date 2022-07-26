@@ -1,0 +1,24 @@
+query righeCommesseDaLavorare{
+  righeCommesseDaLavorare{
+    id
+    quantita
+    prodotto{
+      codice
+      descrizione
+    }
+    lavorazioni{
+      quantita
+    }
+    commessa{
+      id
+      codice
+      data
+      dataConsegna
+      stato
+      cliente{
+        id
+        ragioneSociale
+      }
+    }
+  }
+}

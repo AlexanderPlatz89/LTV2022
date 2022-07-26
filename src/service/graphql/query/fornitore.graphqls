@@ -1,0 +1,15 @@
+query fornitore ($id:Int){
+  fornitore(id:$id){
+    id
+    codice
+    ragioneSociale
+    sediFornitore {
+      id
+      indirizzo
+      citta
+      area
+      zip
+      nazione
+    }
+  }
+}

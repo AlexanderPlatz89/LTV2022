@@ -1,0 +1,15 @@
+query cliente ($id:Int){
+  cliente(id:$id){
+    id
+    codice
+    ragioneSociale
+    sediCliente {
+      id
+      indirizzo
+      citta
+      area
+      zip
+      nazione
+    }
+  }
+}

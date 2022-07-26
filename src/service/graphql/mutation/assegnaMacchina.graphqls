@@ -1,0 +1,5 @@
+mutation assegnaMacchina ($lavorazione:LavorazioneInput){
+  assegnaMacchina(lavorazione:$lavorazione){
+    id
+  }
+}

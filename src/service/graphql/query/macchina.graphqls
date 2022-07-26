@@ -1,0 +1,18 @@
+query macchina($id:Int!) {
+  macchina(id:$id){
+    id
+    codice
+    descrizione
+    tipo
+    lavorazioni{
+        stato
+        quantita
+        rigaCommessa{
+            prodotto{
+                codice
+                descrizione
+            }
+        }
+    }
+  }
+}

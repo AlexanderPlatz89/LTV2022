@@ -1,0 +1,26 @@
+/* Add your customizations of layout here */
+@import "layout_variables";
+
+.deleted{
+  border-left: .4em solid #ad1616;
+  background: #ff9b9b29!important;
+  text-decoration:line-through;
+}
+
+.robot-arm:after {
+  background-color: #BDBDBD;
+  width: 2.5em;
+  height: 1.3em;
+  margin-left: -1.3em;
+  display: inline-block;
+  content: '';
+  -webkit-mask: url('/layout/icons/robot-arm.svg') no-repeat 50% 50%;
+  mask: url('/layout/icons/robot-arm.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+.router-link-active {
+  .robot-arm:after {
+    background-color: $primaryColor;
+  }
+}

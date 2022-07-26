@@ -1,0 +1,20 @@
+/* Add your customizations of layout here */
+/* Add your variable customizations of layout here */
+.robot-arm:after {
+  background-color: #BDBDBD;
+  width: 2.5em;
+  height: 1.3em;
+  margin-left: -1.3em;
+  display: inline-block;
+  content: "";
+  -webkit-mask: url("/layout/icons/robot-arm.svg") no-repeat 50% 50%;
+  mask: url("/layout/icons/robot-arm.svg") no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.router-link-active .robot-arm:after {
+  background-color: #2196F3;
+}
+
+/*# sourceMappingURL=_layout_styles.css.map */

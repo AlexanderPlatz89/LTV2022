@@ -1,0 +1,3 @@
+mutation clienteRemove ($id:Int){
+  clienteRemove(id:$id)
+}

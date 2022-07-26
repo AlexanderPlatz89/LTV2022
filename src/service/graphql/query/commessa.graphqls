@@ -1,0 +1,29 @@
+query commessa ($id:Int){
+    commessa(id:$id){
+        id,
+        codice,
+        data,
+        dataConsegna,
+        stato,
+        cliente{
+            id
+        },
+        righeCommessa {
+            id,
+            quantita,
+            prodotto{
+                id,
+                codice,
+                descrizione,
+                tipo,
+                um
+            },
+            lavorazioni{
+                quantita,
+                produzioni{
+                    quantita
+                }
+            }
+        }
+    }
+}

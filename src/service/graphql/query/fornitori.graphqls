@@ -1,0 +1,7 @@
+query fornitori{
+  fornitori{
+    id,
+    codice,
+    ragioneSociale
+  }
+}

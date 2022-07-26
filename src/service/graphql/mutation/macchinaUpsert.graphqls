@@ -1,0 +1,3 @@
+mutation macchinaUpsert ($macchina:MacchinaInput){
+  macchinaUpsert(macchina:$macchina)
+}

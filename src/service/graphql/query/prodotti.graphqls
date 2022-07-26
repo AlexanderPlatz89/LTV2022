@@ -1,0 +1,11 @@
+query prodotti{
+  prodotti{
+    id,
+    codice,
+    descrizione,
+    um,
+    tipo,
+    trattamento,
+    tempoLavorazione
+  }
+}

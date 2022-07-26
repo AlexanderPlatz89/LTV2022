@@ -1,0 +1,3 @@
+mutation fornitoreUpsert ($fornitore:FornitoreInput){
+  fornitoreUpsert(fornitore:$fornitore)
+}

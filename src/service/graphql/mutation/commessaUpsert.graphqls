@@ -1,0 +1,3 @@
+mutation commessaUpsert ($commessa:CommessaInput){
+  commessaUpsert(commessa:$commessa)
+}

@@ -1,0 +1,3 @@
+mutation clienteUpsert ($cliente:ClienteInput){
+  clienteUpsert(cliente:$cliente)
+}

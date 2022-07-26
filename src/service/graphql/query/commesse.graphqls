@@ -1,0 +1,13 @@
+query commesse{
+  commesse{
+    id,
+    codice,
+    data,
+    dataConsegna,
+    stato,
+    cliente{
+      id
+      ragioneSociale
+    }
+  }
+}
