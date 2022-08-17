@@ -13,7 +13,7 @@ const routes = [
         component: () => import('./components/QRSearch.vue'),
         meta: {
             breadcrumb: [{ label: 'QR Search' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
@@ -33,7 +33,7 @@ const routes = [
         component: () => import('./components/Commesse/Commesse.vue'),
         meta: {
             breadcrumb: [{ label: 'Commesse' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
@@ -43,7 +43,7 @@ const routes = [
         component: () => import('./components/Prodotti/Prodotti.vue'),
         meta: {
             breadcrumb: [{ label: 'Prodotti' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
@@ -53,7 +53,7 @@ const routes = [
         component: () => import('./components/Macchine/Macchine.vue'),
         meta: {
             breadcrumb: [{ label: 'Macchine' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
@@ -63,7 +63,7 @@ const routes = [
         component: () => import('./components/Macchine/Macchina.vue'),
         meta: {
             breadcrumb: [{ label: 'Macchina' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
@@ -73,7 +73,7 @@ const routes = [
         component: () => import('./components/Anagrafica/Cliente.vue'),
         meta: {
             breadcrumb: [{ label: 'Clienti' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
@@ -83,7 +83,7 @@ const routes = [
         component: () => import('./components/Anagrafica/Fornitori.vue'),
         meta: {
             breadcrumb: [{ label: 'Fornitori' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     }
 ];
