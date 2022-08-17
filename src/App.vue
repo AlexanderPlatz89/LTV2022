@@ -57,15 +57,9 @@ export default {
 			configActive: false,
 			configClick: false,
 			menu: [
-				{label: 'QR Search', icon: 'pi pi-fw pi-qrcode', to: '/qrsearch' },
-				{label: 'Produzione', icon: 'fa fa-cogs', to: '/produzione' },
-        {label: 'Commesse', icon: 'pi pi-fw pi-list', to: '/commesse'},
-        {label: 'Prodotti', icon: 'fa fa-cubes', to: '/prodotti'},
-        {label: 'Macchine', icon: 'pi pi-fw robot-arm', to: '/macchine'},
-        {label: 'Anagrafica', icon: 'pi pi-fw pi-users', items:  [
-            {label: 'Clienti', to: '/clienti'},
-            {label: 'Fornitori', to: '/fornitori'},
-          ]},
+				{label: 'Dashboard', icon: 'pi pi-chart-line', to: '/dashboard' },
+				{label: this.$t('menu.manageStaff'), icon: 'pi pi-users', to: '/manageStaff' },
+				{label: this.$t('menu.manageMachines'), icon: 'fa fa-cogs', to: '/manageMachines' },
 			]
 		}
 	},

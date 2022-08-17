@@ -7,85 +7,35 @@ const routes = [
         redirect: '/login'
     },
     {
-        path: '/qrsearch',
-        name: 'qrsearch',
+        path: '/dashboard',
+        name: 'dashboard',
         exact: true,
-        component: () => import('./components/QRSearch.vue'),
+        component: () => import('./components/Production/Dashboard.vue'),
         meta: {
-            breadcrumb: [{ label: 'QR Search' }],
+            breadcrumb: [{ label: 'Dashboard' }],
             requiresAuth: false
         }
     },
     {
-        path: '/produzione',
-        name: 'produzione',
+        path: '/manageStaff',
+        name: 'manageStaff',
         exact: true,
-        component: () => import('./components/Produzione/Produzione.vue'),
+        component: () => import('./components/Workforce/ManageStaff.vue'),
         meta: {
-            breadcrumb: [{ label: 'Produzione' }],
+            breadcrumb: [{ label: 'ManageStaff' }],
             requiresAuth: false
         }
     },
     {
-        path: '/commesse',
-        name: 'commesse',
+        path: '/manageMachines',
+        name: 'manageMachines',
         exact: true,
-        component: () => import('./components/Commesse/Commesse.vue'),
+        component: () => import('./components/Machines/ManageMachines.vue'),
         meta: {
-            breadcrumb: [{ label: 'Commesse' }],
+            breadcrumb: [{ label: 'Manage Machines' }],
             requiresAuth: false
         }
     },
-    {
-        path: '/prodotti',
-        name: 'prodotti',
-        exact: true,
-        component: () => import('./components/Prodotti/Prodotti.vue'),
-        meta: {
-            breadcrumb: [{ label: 'Prodotti' }],
-            requiresAuth: false
-        }
-    },
-    {
-        path: '/macchine',
-        name: 'macchine',
-        exact: true,
-        component: () => import('./components/Macchine/Macchine.vue'),
-        meta: {
-            breadcrumb: [{ label: 'Macchine' }],
-            requiresAuth: false
-        }
-    },
-    {
-        path: '/macchina',
-        name: 'macchina',
-        exact: true,
-        component: () => import('./components/Macchine/Macchina.vue'),
-        meta: {
-            breadcrumb: [{ label: 'Macchina' }],
-            requiresAuth: false
-        }
-    },
-    {
-        path: '/clienti',
-        name: 'clienti',
-        exact: true,
-        component: () => import('./components/Anagrafica/Cliente.vue'),
-        meta: {
-            breadcrumb: [{ label: 'Clienti' }],
-            requiresAuth: false
-        }
-    },
-    {
-        path: '/fornitori',
-        name: 'fornitori',
-        exact: true,
-        component: () => import('./components/Anagrafica/Fornitori.vue'),
-        meta: {
-            breadcrumb: [{ label: 'Fornitori' }],
-            requiresAuth: false
-        }
-    }
 ];
 
 const router = createRouter({

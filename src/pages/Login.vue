@@ -40,7 +40,7 @@
     },
 		methods: {
     authenticate(){
-          this.$router.push({ path: '/produzione' });
+          this.$router.push({ path: '/dashboard' });
 	},
 	async createOperatorsDB() {
       return new Promise((resolve, reject) => {

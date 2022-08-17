@@ -1,2 +1,14 @@
 {
+    "dashboard":{},
+    "manageStaff":{
+        "addWorker":"Aggiungi Operatore",
+        "workerData":"Dati Operatore"
+    },
+    "menu":{
+        "manageStaff":"Gestisci operatori",
+        "manageMachines":"Gestisci macchinari"
+    },
+    "breadcrumb":{
+        "manageStaff":"Gestisci operatori"
+    }
 }

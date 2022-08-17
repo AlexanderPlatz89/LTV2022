@@ -1,2 +1,14 @@
 {
+    "dashboard":{},
+    "manageStaff":{
+        "addWorker":"Add Worker",
+        "workerData":"Worker Data"
+    },
+    "menu":{
+        "manageStaff":"Manage staff",
+        "manageMachines":"Manage machines"
+    },
+    "breadcrumb":{
+        "manageStaff":"Manage staff"
+    }
 }
