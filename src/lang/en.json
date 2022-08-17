@@ -2,7 +2,16 @@
     "dashboard":{},
     "manageStaff":{
         "addWorker":"Add Worker",
-        "workerData":"Worker Data"
+        "workerData":"Worker Data",
+        "name": "Name",
+        "surname": "Surname",
+        "age": "Age",
+        "workerRole": "Worker Role",
+        "selectDepartment": "Select Department",
+        "department": "Department",
+        "machine": "Machine",
+        "positionCompany": "Position Company",
+        "newWorker": "New Worker"
     },
     "menu":{
         "manageStaff":"Manage staff",
@@ -10,5 +19,15 @@
     },
     "breadcrumb":{
         "manageStaff":"Manage staff"
+    },
+    "departments":{
+        "rotary": "Rotary",
+        "flatStamp": "Flat Stamp",
+        "legatory": "Legatory"
+    },
+    "roles":{
+        "headMachine": "Head Machine",
+        "helperMachine": "Helper Machine",
+        "stacker": "Stacker"
     }
 }
