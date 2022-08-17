@@ -66,9 +66,23 @@
 			@click="addWorker()" />
 	</Dialog>
 	<div class="layout-dashboard">
-		workersList:{{ workers }}
-		<Button style="float:right" :label="$t('manageStaff.addWorker')" icon="pi pi-plus" iconPos="right"
-			@click="openWorkerDialog()" />
+		<div class="col-12" style="height: 4em;"><Button style="float:right" :label="$t('manageStaff.addWorker')" icon="pi pi-plus"
+				iconPos="right" @click="openWorkerDialog()" /></div>
+
+		<div class="col-12">
+			<DataTable :value="workers" responsiveLayout="scroll">
+				<Column field="name" :header="$t('manageStaff.name')"></Column>
+				<Column field="surname" :header="$t('manageStaff.surname')"></Column>
+				<Column field="age" :header="$t('manageStaff.age')"></Column>
+				<Column field="workerRole" :header="$t('manageStaff.workerRole')"></Column>
+				<Column field="department" :header="$t('manageStaff.department')">
+					<template #body="worker">
+						{{decodeDepartments(worker.data.department)}}
+					</template>
+				</Column>
+				<Column field="machine" :header="$t('manageStaff.machine')"></Column>
+			</DataTable>
+		</div>
 	</div>
 </template>
 
@@ -114,6 +128,17 @@ export default {
 		}
 	},
 	methods: {
+		decodeDepartments(code) {
+			if(code === 1){
+				return this.$t('departments.rotary')
+			}else if(code === 2){
+				return this.$t('roles.helperMachine')
+			}else if(code === 3){
+				return this.$t('roles.stacker')
+			}else{
+				return "N.D"
+			}
+		},
 		async getWorkes() {
 			return new Promise((resolve, reject) => {
 				const transaction = this.workersDB.transaction('rotaryWorkers', 'readonly')
@@ -191,5 +216,11 @@ export default {
 
 .label-add-worker {
 	margin-top: .25em;
+}
+
+.dataTable {
+	position: relative;
+	align-content: center;
+	justify-content: center;
 }
 </style>
