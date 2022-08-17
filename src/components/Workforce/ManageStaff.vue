@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<Button style="float:right" :label="$t('manageStaff.newWorker')" icon="pi pi-plus" iconPos="right"
-			@click="insertNewWorker(newWorker)"/>
+			@click="addWorker()" />
 	</Dialog>
 	<div class="layout-dashboard">
 		<Button style="float:right" :label="$t('manageStaff.addWorker')" icon="pi pi-plus" iconPos="right"
@@ -79,12 +79,12 @@ export default {
 	data() {
 		return {
 			showWorkerDialog: false,
-			workers:[],
+			workers: [],
 			newWorker: {},
 			departments: [
-				{ description: this.$t('departments.rotary'), code: '1' },
-				{ description: this.$t('departments.flatStamp'), code: '2' },
-				{ description: this.$t('departments.legatory'), code: '3' },
+				{ description: this.$t('departments.rotary'), code: 1 },
+				{ description: this.$t('departments.flatStamp'), code: 2 },
+				{ description: this.$t('departments.legatory'), code: 3 },
 			],
 			machines: [
 				'T4',
@@ -103,17 +103,48 @@ export default {
 	},
 	mounted() {
 	},
+	computed: {
+		machinesDB() {
+			return this.$store.getters["machinesDB"]
+		},
+		workersDB() {
+			return this.$store.getters["workersDB"]
+		}
+	},
 	methods: {
+		addWorker() {
+			const nameFormatted = this.newWorker.name && this.newWorker.name.trim()
+			const surnameFromatted = this.newWorker.surname && this.newWorker.surname.trim()
+			const ageFormatted = this.newWorker.age && this.newWorker.age.trim()
+			const workerRoleFormatted = this.newWorker.workerRole && this.newWorker.workerRole.trim()
+			const machineFormatted = this.newWorker.machine && this.newWorker.machine.trim()
+
+			const workerItem = {
+				id: this.workers.length + 1,
+				name: nameFormatted,
+				surname: surnameFromatted,
+				age: ageFormatted,
+				workerRole: workerRoleFormatted,
+				department : this.newWorker.department,
+				machine: machineFormatted,
+			}
+			if (!nameFormatted) {
+				return
+			}
+			debugger
+			this.workers.push(workerItem)
+			this.insertNewWorker(workerItem)
+			this.newWorker = ''
+		},
 		openWorkerDialog() {
 			this.showWorkerDialog = true
 			this.newWorker.id = this.workers.length + 1
 		},
 		async insertNewWorker(worker) {
-			this.operatorsDB = await this.createOperatorsDB()
 			return new Promise((resolve, reject) => {
-				const transaction = this.operatorsDB.transaction('operators', 'readwrite')
-				const store = transaction.objectStore('operators')
-
+				const transaction = this.workersDB.transaction('rotaryWorkers', 'readwrite')
+				const store = transaction.objectStore('rotaryWorkers')
+				debugger
 				store.put(worker)
 
 				transaction.oncomplete = () => {

@@ -1,24 +1,12 @@
 import {createStore} from 'vuex'
-import Produzione from "@/store/modules/produzione";
-import Lavorazione from "@/store/modules/lavorazione";
-import Commessa from "@/store/modules/commessa";
-import Prodotto from "@/store/modules/prodotto";
-import Macchina from "@/store/modules/macchina";
-import Cliente from "@/store/modules/cliente";
-import Fornitore from "@/store/modules/fornitore";
 import AuthService from "@/service/AuthService";
 
 const store = createStore({
     modules: {
-        produzione: Produzione,
-        lavorazione: Lavorazione,
-        commessa: Commessa,
-        prodotto: Prodotto,
-        macchina: Macchina,
-        cliente: Cliente,
-        fornitore: Fornitore,
     },
     state: {
+        machinesDB: null,
+        workersDB: null,
         endpoint: (location.hostname.search("localhost") !== -1 ? location.protocol + '//' + location.hostname + ':8081' : location.protocol + '//' + location.hostname),
         user: null,
         editing: false,
@@ -29,6 +17,12 @@ const store = createStore({
         authService: new AuthService()
     },
     getters: {
+        machinesDB: state => {
+                return state.machinesDB;
+        },
+        workersDB: state => {
+            return state.workersDB;
+        },
         token: state => {
             if (state.user != null) {
                 return state.user.token;
@@ -50,6 +44,12 @@ const store = createStore({
         }
     },
     mutations: {
+        setMachinesDB(state, machinesDB) {
+            state.machinesDB = machinesDB;
+        },
+        setWorkersDB(state, workersDB) {
+            state.workersDB = workersDB;
+        },
         setUser(state, user) {
             state.user = user;
         },
