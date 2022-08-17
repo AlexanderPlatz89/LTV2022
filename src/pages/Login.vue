@@ -40,7 +40,11 @@
     },
 		methods: {
     authenticate(){
-          this.$router.push({ path: '/dashboard' });
+      if(this.username === "echego" && this.password === "123"){
+        this.$router.push({ path: '/manageStaff' });
+      }else{
+        return alert('inserisci dati')
+      }
 	},
 	async createOperatorsDB() {
       return new Promise((resolve, reject) => {

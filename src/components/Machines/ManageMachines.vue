@@ -7,11 +7,13 @@
 <script>
 
 export default {
-  components:{
-  },
+	components:{
+	},
 	data() {
 		return {
     }
+	},
+	computed:{
 	},
 	created() {
 	},
