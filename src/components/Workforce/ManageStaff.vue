@@ -66,6 +66,7 @@
 			@click="addWorker()" />
 	</Dialog>
 	<div class="layout-dashboard">
+		workersList:{{ workers }}
 		<Button style="float:right" :label="$t('manageStaff.addWorker')" icon="pi pi-plus" iconPos="right"
 			@click="openWorkerDialog()" />
 	</div>
@@ -100,6 +101,7 @@ export default {
 		}
 	},
 	created() {
+		this.getWorkes()
 	},
 	mounted() {
 	},
@@ -112,29 +114,47 @@ export default {
 		}
 	},
 	methods: {
-		addWorker() {
-			const nameFormatted = this.newWorker.name && this.newWorker.name.trim()
-			const surnameFromatted = this.newWorker.surname && this.newWorker.surname.trim()
-			const ageFormatted = this.newWorker.age && this.newWorker.age.trim()
-			const workerRoleFormatted = this.newWorker.workerRole && this.newWorker.workerRole.trim()
-			const machineFormatted = this.newWorker.machine && this.newWorker.machine.trim()
+		async getWorkes() {
+			return new Promise((resolve, reject) => {
+				const transaction = this.workersDB.transaction('rotaryWorkers', 'readonly')
+				const store = transaction.objectStore('rotaryWorkers')
 
+				let workersList = []
+				store.openCursor().onsuccess = event => {
+					const cursor = event.target.result
+					if (cursor) {
+						workersList.push(cursor.value)
+						this.workers = this.$filters.deepClone(workersList)
+						cursor.continue()
+					}
+				}
+
+				transaction.oncomplete = () => {
+					resolve(workersList)
+				}
+
+				transaction.onerror = event => {
+					reject(event)
+				}
+			})
+		},
+		addWorker() {
 			const workerItem = {
-				id: this.workers.length + 1,
-				name: nameFormatted,
-				surname: surnameFromatted,
-				age: ageFormatted,
-				workerRole: workerRoleFormatted,
-				department : this.newWorker.department,
-				machine: machineFormatted,
+				id: (Math.random() * 10000).toFixed(0),
+				name: this.newWorker.name && this.newWorker.name.trim(),
+				surname: this.newWorker.surname && this.newWorker.surname.trim(),
+				age: this.newWorker.age && this.newWorker.age.trim(),
+				workerRole: this.newWorker.workerRole && this.newWorker.workerRole.trim(),
+				department: this.newWorker.department,
+				machine: this.newWorker.machine && this.newWorker.machine.trim(),
 			}
-			if (!nameFormatted) {
+			if (!workerItem) {
 				return
 			}
-			debugger
 			this.workers.push(workerItem)
 			this.insertNewWorker(workerItem)
-			this.newWorker = ''
+			this.newWorker = {}
+			this.showWorkerDialog = false
 		},
 		openWorkerDialog() {
 			this.showWorkerDialog = true
