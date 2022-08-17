@@ -35,16 +35,7 @@
     },
 		methods: {
       authenticate(){
-          this.$store.dispatch("authenticate",{username:this.username,password:this.password}).then(() => {
           this.$router.push({ path: '/produzione' });
-        }).catch(() => {
-          this.$toast.add({
-            severity: "error",
-            summary: "Attenzione!",
-            detail: "Utente o password errati",
-            life: 10000
-          });
-        })
 			}
 		}
 	}

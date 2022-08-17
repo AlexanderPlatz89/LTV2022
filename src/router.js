@@ -23,7 +23,7 @@ const routes = [
         component: () => import('./components/Produzione/Produzione.vue'),
         meta: {
             breadcrumb: [{ label: 'Produzione' }],
-            requiresAuth: true
+            requiresAuth: false
         }
     },
     {
