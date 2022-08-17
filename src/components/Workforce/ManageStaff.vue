@@ -66,18 +66,22 @@
 			@click="addWorker()" />
 	</Dialog>
 	<div class="layout-dashboard">
-		<div class="col-12" style="height: 4em;"><Button style="float:right" :label="$t('manageStaff.addWorker')" icon="pi pi-plus"
-				iconPos="right" @click="openWorkerDialog()" /></div>
+		<div class="col-12" style="height: 4em;"><Button style="float:right" :label="$t('manageStaff.addWorker')"
+				icon="pi pi-plus" iconPos="right" @click="openWorkerDialog()" /></div>
 
 		<div class="col-12">
 			<DataTable :value="workers" responsiveLayout="scroll">
 				<Column field="name" :header="$t('manageStaff.name')"></Column>
 				<Column field="surname" :header="$t('manageStaff.surname')"></Column>
 				<Column field="age" :header="$t('manageStaff.age')"></Column>
-				<Column field="workerRole" :header="$t('manageStaff.workerRole')"></Column>
+				<Column field="workerRole" :header="$t('manageStaff.workerRole')">
+					<template #body="worker">
+						{{ decodeWorker(worker.data.roles) }}
+					</template>
+				</Column>
 				<Column field="department" :header="$t('manageStaff.department')">
 					<template #body="worker">
-						{{decodeDepartments(worker.data.department)}}
+						{{ decodeDepartments(worker.data.department) }}
 					</template>
 				</Column>
 				<Column field="machine" :header="$t('manageStaff.machine')"></Column>
@@ -108,7 +112,7 @@ export default {
 				'T7'
 			],
 			workerRoles: [
-				{ description: this.$t('roles.headMachine'), code: '1' },
+				{ description: this.$t('roles.headMachine'), code:	'1' },
 				{ description: this.$t('roles.helperMachine'), code: '2' },
 				{ description: this.$t('roles.stacker'), code: '3' },
 			]
@@ -129,13 +133,24 @@ export default {
 	},
 	methods: {
 		decodeDepartments(code) {
-			if(code === 1){
+			if (code === 1) {
 				return this.$t('departments.rotary')
-			}else if(code === 2){
+			} else if (code === 2) {
+				return this.$t('departments.flatStamp')
+			} else if (code === 3) {
+				return this.$t('departments.legatory')
+			} else {
+				return "N.D"
+			}
+		},
+		decodeWorker(code) {debugger
+			if (code === '1') {
+				return this.$t('roles.headMachine')
+			} else if (code === '2') {
 				return this.$t('roles.helperMachine')
-			}else if(code === 3){
+			} else if (code === '3') {
 				return this.$t('roles.stacker')
-			}else{
+			} else {
 				return "N.D"
 			}
 		},
