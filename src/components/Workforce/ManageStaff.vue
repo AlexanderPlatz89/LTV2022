@@ -205,7 +205,8 @@ export default {
 			}
 		},
 		async getWorker() {
-			this.workers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers')
+			let rotaryWorkers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers')
+			rotaryWorkers.forEach(worker => this.workers.push(worker))
 		},
 		addWorker() {
 			const workerItem = {
