@@ -1,16 +1,26 @@
 <template>
-	<Dialog v-model:visible="showWorkerDialog">
+	<Dialog v-model:visible="showWorkerDialog" :style="{ width: '50vw' }">
 		<div class="grid">
+			<div class="col-6">
+				<h5 class="label-add-worker">{{ $t('manageStaff.department') }}: </h5>
+			</div>
 			<div class="col-6 container-input-add-worker">
-				<div class="col-12">
+				<Dropdown v-model="newWorker.department" style="width: 100%;" optionLabel="description"
+					optionValue="code" :options="departments" :placeholder="$t('manageStaff.selectDepartment')" />
+			</div>
+		</div>
+		<div class="grid" >
+			<Fieldset class="col-6 container-input-add-worker">
+				<template #legend>
 					<h5>{{ $t('manageStaff.workerData') }}</h5>
-				</div>
+				</template>
 				<div class="grid">
 					<div class="col-6">
 						<h5 class="label-add-worker">{{ $t('manageStaff.name') }}: </h5>
 					</div>
 					<div class="col-6">
-						<InputText class="input-add-worker" type="text" v-model="newWorker.name" />
+						<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+							v-model="newWorker.name" />
 					</div>
 				</div>
 				<div class="grid">
@@ -18,7 +28,8 @@
 						<h5 class="label-add-worker">{{ $t('manageStaff.surname') }}: </h5>
 					</div>
 					<div class="col-6">
-						<InputText class="input-add-worker" type="text" v-model="newWorker.surname" />
+						<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+							v-model="newWorker.surname" />
 					</div>
 				</div>
 				<div class="grid">
@@ -26,41 +37,35 @@
 						<h5 class="label-add-worker">{{ $t('manageStaff.age') }}: </h5>
 					</div>
 					<div class="col-6">
-						<InputText class="input-add-worker" type="number" v-model="newWorker.age" />
+						<InputText :disabled="newWorker.department == null" class="input-add-worker" type="number"
+							v-model="newWorker.age" />
 					</div>
 				</div>
-			</div>
-			<div class="col-6">
-				<div class="col-12">
-					<h5>{{ $t('manageStaff.positionCompany') }}</h5>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.workerRole') }}: </h5>
+			</Fieldset>
+				<Fieldset class="col-6 container-input-add-worker">
+					<template #legend>
+						<h5>{{ $t('manageStaff.positionCompany') }}</h5>
+					</template>
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.workerRole') }}: </h5>
+						</div>
+						<div class="col-6 container-input-add-worker">
+							<Dropdown :disabled="newWorker.department == null" v-model="newWorker.workerRole"
+								style="width: 10em;" optionLabel="description" optionValue="code" :options="workerRoles"
+								:placeholder="$t('manageStaff.workerRole')" />
+						</div>
 					</div>
-					<div class="col-6 container-input-add-worker">
-						<Dropdown v-model="newWorker.workerRole" style="width: 10em;" optionLabel="description"
-							optionValue="code" :options="workerRoles" :placeholder="$t('manageStaff.workerRole')" />
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.machine') }}: </h5>
+						</div>
+						<div class="col-6 container-input-add-worker">
+							<Dropdown :disabled="newWorker.department == null" v-model="newWorker.machine"
+								style="width: 10em;" :options="machines" :placeholder="$t('manageStaff.machine')" />
+						</div>
 					</div>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.department') }}: </h5>
-					</div>
-					<div class="col-6 container-input-add-worker">
-						<Dropdown v-model="newWorker.department" style="width: 10em;" optionLabel="description"
-							optionValue="code" :options="departments"
-							:placeholder="$t('manageStaff.selectDepartment')" />
-					</div>
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.machine') }}: </h5>
-					</div>
-					<div class="col-6 container-input-add-worker">
-						<Dropdown v-model="newWorker.machine" style="width: 10em;" :options="machines"
-							:placeholder="$t('manageStaff.machine')" />
-					</div>
-				</div>
-			</div>
+				</Fieldset>
 		</div>
 		<Button style="float:right" :label="$t('manageStaff.newWorker')" icon="pi pi-plus" iconPos="right"
 			@click="addWorker()" />
@@ -105,7 +110,7 @@
 </template>
 
 <script>
-import {FilterMatchMode} from 'primevue/api';
+import { FilterMatchMode } from 'primevue/api';
 
 export default {
 	components: {
