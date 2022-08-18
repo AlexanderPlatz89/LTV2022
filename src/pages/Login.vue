@@ -2,12 +2,11 @@
 	<div class="login-body">
 		<Toast />
 		<div class="login-panel"></div>
-
 		<div class="login-content">
-			<img src="layout/images/logo-black.png" alt="babylon-layout" />
+			<img src="layout/images/LTV_logo.png" alt="babylon-layout"/>
 
-			<h1><span>SIGN IN</span> TO BABYLON</h1>
-			<p>Welcome, please use the form to sign-in.</p>
+			<h1><span>{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
+			<p>{{$t('login.welcome')}}</p>
 
 			<div class="login-input-wrapper">
 				<InputText placeholder="Username" v-model="username" />
@@ -19,7 +18,7 @@
 				<i class="pi pi-lock"></i>
 			</div>
 
-			<Button label="Sign In" @click="authenticate()" />
+			<Button :label="$t('login.signIn')" @click="authenticate()" />
 		</div>
 	</div>
 </template>
@@ -39,6 +38,7 @@ export default {
 			password: null,
 			machinesDB: null,
 			workersDB: null,
+			signIn: ''
 		}
 	},
 	methods: {
@@ -102,7 +102,7 @@ export default {
 				request.onupgradeneeded = event => {
 					let workersDB = event.target.result
 					workersDB.createObjectStore('rotaryWorkers', {
-						autoIncrement: true,
+					autoIncrement: true,
 						keyPath: 'id'
 					})
 					workersDB.createObjectStore('flatStampWorkers', {
@@ -121,4 +121,31 @@ export default {
 </script>
 
 <style scoped>
+.login-body{
+	margin:auto;
+	padding: auto;
+	background-image: url("./galassia.jpg");
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.login-panel {
+	opacity: 40%;
+	left: auto;
+	top: -140%;
+	position: absolute;
+}
+.login-content {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.login-input-wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.login-input-wrapper input{
+	text-align: center;
+
+}
 </style>

@@ -1,5 +1,10 @@
 {
     "dashboard":{},
+    "login": {
+        "signIn": "Sign In",
+        "toBabylon": " To Babylon",
+        "welcome": "Welcome, please use the form to sign-in."
+    },
     "manageStaff":{
         "addWorker":"Add Worker",
         "workerData":"Worker Data",

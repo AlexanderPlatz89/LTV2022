@@ -70,13 +70,27 @@
 				icon="pi pi-plus" iconPos="right" @click="openWorkerDialog()" /></div>
 
 		<div class="col-12">
-			<DataTable :value="workers" responsiveLayout="scroll">
-				<Column field="name" :header="$t('manageStaff.name')"></Column>
-				<Column field="surname" :header="$t('manageStaff.surname')"></Column>
+			<Column field="name" header="Name" :expander="true">
+				<template #filter>
+					<InputText type="text" v-model="filters2['name']" class="p-column-filter"
+						placeholder="Filter by name" />
+				</template>
+			</Column>
+
+			<DataTable :value="workers" responsiveLayout="scroll" filterDisplay="row" v-model:filters="filters">
+				<Column field="name" :header="$t('manageStaff.name')">
+					<template #filter="{ filterModel, filterCallback }">
+						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
+							@input="filterCallback()" :placeholder="$t('common.placeholders.contains')" />
+					</template>
+				</Column>
+				<Column field="surname" :header="$t('manageStaff.surname')">
+
+				</Column>
 				<Column field="age" :header="$t('manageStaff.age')"></Column>
 				<Column field="workerRole" :header="$t('manageStaff.workerRole')">
 					<template #body="worker">
-						{{ decodeWorker(worker.data.roles) }}
+						{{ decodeWorker(worker.data.workerRole) }}
 					</template>
 				</Column>
 				<Column field="department" :header="$t('manageStaff.department')">
@@ -91,6 +105,7 @@
 </template>
 
 <script>
+import {FilterMatchMode} from 'primevue/api';
 
 export default {
 	components: {
@@ -112,14 +127,18 @@ export default {
 				'T7'
 			],
 			workerRoles: [
-				{ description: this.$t('roles.headMachine'), code:	'1' },
+				{ description: this.$t('roles.headMachine'), code: '1' },
 				{ description: this.$t('roles.helperMachine'), code: '2' },
 				{ description: this.$t('roles.stacker'), code: '3' },
-			]
+			],
+			filters: {
+				'name': { value: null, matchMode: FilterMatchMode.CONTAINS },
+			}
+
 		}
 	},
 	created() {
-		this.getWorkes()
+		this.getWorker()
 	},
 	mounted() {
 	},
@@ -143,7 +162,7 @@ export default {
 				return "N.D"
 			}
 		},
-		decodeWorker(code) {debugger
+		decodeWorker(code) {
 			if (code === '1') {
 				return this.$t('roles.headMachine')
 			} else if (code === '2') {
@@ -154,7 +173,7 @@ export default {
 				return "N.D"
 			}
 		},
-		async getWorkes() {
+		async getWorker() {
 			return new Promise((resolve, reject) => {
 				const transaction = this.workersDB.transaction('rotaryWorkers', 'readonly')
 				const store = transaction.objectStore('rotaryWorkers')
