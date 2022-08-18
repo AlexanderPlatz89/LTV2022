@@ -16,6 +16,7 @@
         "selectDepartment": "Select Department",
         "department": "Department",
         "machine": "Machine",
+        "addMachine": "Add Machine",
         "positionCompany": "Position Company",
         "newWorker": "New Worker"
     },

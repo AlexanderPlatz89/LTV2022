@@ -9,61 +9,61 @@
 					optionValue="code" :options="departments" :placeholder="$t('manageStaff.selectDepartment')" />
 			</div>
 		</div>
-		<div class="grid col-12">
-			<div class="col-6">
+		<div class="grid xl:col-12 md:col-12 sm:col-3">
+			<div class="xl:col-6 md:col-12 sm:col-3">
 				<Fieldset>
 					<template #legend>
-						<h5>{{ $t('manageStaff.workerData') }}</h5>
+						<h6>{{ $t('manageStaff.workerData') }}</h6>
 					</template>
 					<div class="grid">
-						<div class="col-6">
-							<h5 class="label-add-worker">{{ $t('manageStaff.name') }}: </h5>
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<h5 class="label-add-worker xl:col-6 md:col-6 sm:col-3">{{ $t('manageStaff.name') }}: </h5>
 						</div>
-						<div class="col-6">
-							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker xl:col-6 md:col-6 sm:col-3" type="text"
 								v-model="newWorker.name" />
 						</div>
 					</div>
-					<div class="grid">
-						<div class="col-6">
-							<h5 class="label-add-worker">{{ $t('manageStaff.surname') }}: </h5>
+					<div class="grid ">
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<h5 class="label-add-worker xl:col-6 md:col-6 sm:col-3">{{ $t('manageStaff.surname') }}: </h5>
 						</div>
-						<div class="col-6">
-							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker xl:col-6 md:col-6 sm:col-3" type="text"
 								v-model="newWorker.surname" />
 						</div>
 					</div>
 					<div class="grid">
-						<div class="col-6">
-							<h5 class="label-add-worker">{{ $t('manageStaff.age') }}: </h5>
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<h5 class="label-add-worker xl:col-6 md:col-6 sm:col-3">{{ $t('manageStaff.age') }}: </h5>
 						</div>
-						<div class="col-6">
-							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="number"
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker xl:col-6 md:col-6 sm:col-3" type="number"
 								v-model="newWorker.age" />
 						</div>
 					</div>
 				</Fieldset>
 			</div>
-			<div class="col-6">
+			<div class="xl:col-6 md:col-12 sm:col-3">
 				<Fieldset>
 					<template #legend>
-						<h5>{{ $t('manageStaff.positionCompany') }}</h5>
+						<h6>{{ $t('manageStaff.positionCompany') }}</h6>
 					</template>
 					<div class="grid">
-						<div class="col-6">
-							<h5 class="label-add-worker">{{ $t('manageStaff.workerRole') }}: </h5>
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<h5 class="label-add-worker col-6 md:col-6 sm:col-3">{{ $t('manageStaff.workerRole') }}: </h5>
 						</div>
-						<div class="col-6 container-input-add-worker">
+						<div class="xl:col-6 md:col-6 sm:col-3 container-input-add-worker">
 							<Dropdown :disabled="newWorker.department == null" v-model="newWorker.workerRole"
 								style="width: 10em;" optionLabel="description" optionValue="code" :options="workerRoles"
 								:placeholder="$t('manageStaff.workerRole')" />
 						</div>
 					</div>
 					<div class="grid">
-						<div class="col-6">
-							<h5 class="label-add-worker">{{ $t('manageStaff.machine') }}: </h5>
+						<div class="xl:col-6 md:col-6 sm:col-3">
+							<h5 class="label-add-worker xl:col-6 md:col-6 sm:col-3">{{ $t('manageStaff.machine') }}: </h5>
 						</div>
-						<div class="col-6 container-input-add-worker">
+						<div class="xl:col-6 md:col-6 sm:col-3 container-input-add-worker">
 							<Dropdown :disabled="newWorker.department == null" v-model="newWorker.machine"
 								style="width: 10em;" :options="machines" :placeholder="$t('manageStaff.machine')" />
 						</div>
@@ -207,6 +207,10 @@ export default {
 		async getWorker() {
 			let rotaryWorkers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers')
 			rotaryWorkers.forEach(worker => this.workers.push(worker))
+			let flatStampWorkers = await this.$db.readFromTable(this.workersDB, 'flatStampWorkers ')
+			flatStampWorkers .forEach(worker => this.workers.push(worker))
+			let legatoryWorkers = await this.$db.readFromTable(this.workersDB, 'legatoryWorkers  ')
+			legatoryWorkers  .forEach(worker => this.workers.push(worker))
 		},
 		addWorker() {
 			const workerItem = {
