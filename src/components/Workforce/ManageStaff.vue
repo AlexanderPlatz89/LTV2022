@@ -217,9 +217,6 @@ export default {
 				department: this.newWorker.department,
 				machine: this.newWorker.machine && this.newWorker.machine.trim(),
 			}
-			if (!workerItem) {
-				return
-			}
 			this.workers.push(workerItem)
 			if(workerItem.department === 1){
 				this.$db.insert(this.workersDB, 'rotaryWorkers', workerItem)
