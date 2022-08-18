@@ -9,40 +9,43 @@
 					optionValue="code" :options="departments" :placeholder="$t('manageStaff.selectDepartment')" />
 			</div>
 		</div>
-		<div class="grid" >
-			<Fieldset class="col-6 container-input-add-worker">
-				<template #legend>
-					<h5>{{ $t('manageStaff.workerData') }}</h5>
-				</template>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.name') }}: </h5>
+		<div class="grid col-12">
+			<div class="col-6">
+				<Fieldset>
+					<template #legend>
+						<h5>{{ $t('manageStaff.workerData') }}</h5>
+					</template>
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.name') }}: </h5>
+						</div>
+						<div class="col-6">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+								v-model="newWorker.name" />
+						</div>
 					</div>
-					<div class="col-6">
-						<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
-							v-model="newWorker.name" />
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.surname') }}: </h5>
+						</div>
+						<div class="col-6">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+								v-model="newWorker.surname" />
+						</div>
 					</div>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.surname') }}: </h5>
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.age') }}: </h5>
+						</div>
+						<div class="col-6">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="number"
+								v-model="newWorker.age" />
+						</div>
 					</div>
-					<div class="col-6">
-						<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
-							v-model="newWorker.surname" />
-					</div>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.age') }}: </h5>
-					</div>
-					<div class="col-6">
-						<InputText :disabled="newWorker.department == null" class="input-add-worker" type="number"
-							v-model="newWorker.age" />
-					</div>
-				</div>
-			</Fieldset>
-				<Fieldset class="col-6 container-input-add-worker">
+				</Fieldset>
+			</div>
+			<div class="col-6">
+				<Fieldset>
 					<template #legend>
 						<h5>{{ $t('manageStaff.positionCompany') }}</h5>
 					</template>
@@ -66,6 +69,7 @@
 						</div>
 					</div>
 				</Fieldset>
+			</div>
 		</div>
 		<Button style="float:right" :label="$t('manageStaff.newWorker')" icon="pi pi-plus" iconPos="right"
 			@click="addWorker()" />
@@ -216,7 +220,9 @@ export default {
 				return
 			}
 			this.workers.push(workerItem)
-			this.insertNewWorker(workerItem)
+			if(workerItem.department !=null && workerItem.department === 1){
+				this.insertNewWorkerRotary(workerItem)
+			}
 			this.newWorker = {}
 			this.showWorkerDialog = false
 		},
@@ -224,7 +230,7 @@ export default {
 			this.showWorkerDialog = true
 			this.newWorker.id = this.workers.length + 1
 		},
-		async insertNewWorker(worker) {
+		async insertNewWorkerRotary(worker) {
 			return new Promise((resolve, reject) => {
 				const transaction = this.workersDB.transaction('rotaryWorkers', 'readwrite')
 				const store = transaction.objectStore('rotaryWorkers')
