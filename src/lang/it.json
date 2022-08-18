@@ -6,6 +6,7 @@
         "welcome": "Benvenuto, utilizza il modulo per accedere."
     },
     "manageStaff": {
+        "contains":"Inizia con...",
         "addWorker": "Aggiungi Operatore",
         "workerData": "Dati Operatore",
         "name": "Nome",

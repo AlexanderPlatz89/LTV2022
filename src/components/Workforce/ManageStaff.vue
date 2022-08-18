@@ -79,35 +79,52 @@
 				icon="pi pi-plus" iconPos="right" @click="openWorkerDialog()" /></div>
 
 		<div class="col-12">
-			<Column field="name" header="Name" :expander="true">
-				<template #filter>
-					<InputText type="text" v-model="filters2['name']" class="p-column-filter"
-						placeholder="Filter by name" />
-				</template>
-			</Column>
 
 			<DataTable :value="workers" responsiveLayout="scroll" filterDisplay="row" v-model:filters="filters">
-				<Column field="name" :header="$t('manageStaff.name')">
+				<Column field="name" :header="$t('manageStaff.name')" :showFilterMenu="false" :sortable="true">
 					<template #filter="{ filterModel, filterCallback }">
 						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
-							@input="filterCallback()" :placeholder="$t('common.placeholders.contains')" />
+							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
 					</template>
 				</Column>
-				<Column field="surname" :header="$t('manageStaff.surname')">
-
+				<Column field="surname" :header="$t('manageStaff.surname')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
+							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
+					</template>
 				</Column>
-				<Column field="age" :header="$t('manageStaff.age')"></Column>
-				<Column field="workerRole" :header="$t('manageStaff.workerRole')">
+				<Column field="age" :header="$t('manageStaff.age')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
+							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
+					</template>
+				</Column>
+				<Column field="workerRole" :header="$t('manageStaff.workerRole')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
+							:options="workerRoles" optionLabel="description" optionValue="code"
+							:placeholder="$t('manageStaff.workerRole')" />
+					</template>
 					<template #body="worker">
 						{{ decodeWorker(worker.data.workerRole) }}
 					</template>
 				</Column>
-				<Column field="department" :header="$t('manageStaff.department')">
+				<Column field="department" :header="$t('manageStaff.department')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
+							:options="departments" optionLabel="description" optionValue="code"
+							:placeholder="$t('manageStaff.department')" />
+					</template>
 					<template #body="worker">
 						{{ decodeDepartments(worker.data.department) }}
 					</template>
 				</Column>
-				<Column field="machine" :header="$t('manageStaff.machine')"></Column>
+				<Column field="machine" :header="$t('manageStaff.machine')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
+							:options="machines" :placeholder="$t('manageStaff.machine')" />
+					</template>
+				</Column>
 			</DataTable>
 		</div>
 	</div>
@@ -142,6 +159,11 @@ export default {
 			],
 			filters: {
 				'name': { value: null, matchMode: FilterMatchMode.CONTAINS },
+				'surname': { value: null, matchMode: FilterMatchMode.CONTAINS },
+				'age': { value: null, matchMode: FilterMatchMode.CONTAINS },
+				'workerRole': { value: null, matchMode: FilterMatchMode.EQUALS },
+				'department': { value: null, matchMode: FilterMatchMode.EQUALS },
+				'machine': { value: null, matchMode: FilterMatchMode.EQUALS },
 			}
 
 		}
@@ -183,28 +205,7 @@ export default {
 			}
 		},
 		async getWorker() {
-			return new Promise((resolve, reject) => {
-				const transaction = this.workersDB.transaction('rotaryWorkers', 'readonly')
-				const store = transaction.objectStore('rotaryWorkers')
-
-				let workersList = []
-				store.openCursor().onsuccess = event => {
-					const cursor = event.target.result
-					if (cursor) {
-						workersList.push(cursor.value)
-						this.workers = this.$filters.deepClone(workersList)
-						cursor.continue()
-					}
-				}
-
-				transaction.oncomplete = () => {
-					resolve(workersList)
-				}
-
-				transaction.onerror = event => {
-					reject(event)
-				}
-			})
+			this.workers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers')
 		},
 		addWorker() {
 			const workerItem = {
@@ -220,31 +221,18 @@ export default {
 				return
 			}
 			this.workers.push(workerItem)
-			if(workerItem.department !=null && workerItem.department === 1){
-				this.insertNewWorkerRotary(workerItem)
+			if(workerItem.department === 1){
+				this.$db.insert(this.workersDB, 'rotaryWorkers', workerItem)
+			} else if(workerItem.department === 2){
+				this.$db.insert(this.workersDB, 'flatStampWorkers', workerItem)
+			} else {
+				this.$db.insert(this.workersDB, 'legatoryWorkers', workerItem)
 			}
 			this.newWorker = {}
 			this.showWorkerDialog = false
 		},
 		openWorkerDialog() {
 			this.showWorkerDialog = true
-			this.newWorker.id = this.workers.length + 1
-		},
-		async insertNewWorkerRotary(worker) {
-			return new Promise((resolve, reject) => {
-				const transaction = this.workersDB.transaction('rotaryWorkers', 'readwrite')
-				const store = transaction.objectStore('rotaryWorkers')
-				debugger
-				store.put(worker)
-
-				transaction.oncomplete = () => {
-					resolve('Machine added successfully')
-				}
-
-				transaction.onerror = event => {
-					reject(event)
-				}
-			})
 		},
 	},
 }
