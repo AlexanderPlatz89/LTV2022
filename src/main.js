@@ -1,5 +1,5 @@
-import {createApp, h} from 'vue';
-import {i18n} from "./plugins/i18n";
+import { createApp, h } from 'vue';
+import { i18n } from "./plugins/i18n";
 import IdleVue from 'idle-vue-3'
 import router from './router';
 import store from './store';
@@ -45,15 +45,61 @@ const app = createApp({
     }
 });
 
-app.use(PrimeVue, {ripple: true});
+app.use(PrimeVue, { ripple: true });
 app.use(router);
 app.use(store);
 app.use(i18n);
-app.use(IdleVue, {eventEmitter: app, idleTime: 6000000, store});
+app.use(IdleVue, { eventEmitter: app, idleTime: 6000000, store });
 app.use(VueQrcodeReader);
 app.component('qr-code', VueQRCodeComponent)
 
+app.config.globalProperties.$db = {
 
+    async insert(db, table, objToInsert) {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(table, 'readwrite')
+            const store = transaction.objectStore(table)
+            debugger
+            store.put(objToInsert)
+
+            transaction.oncomplete = () => {
+                resolve('Machine added successfully')
+            }
+
+            transaction.onerror = event => {
+                reject(event)
+            }
+        })
+    },
+    async readFromTable(db, table) {
+        let outPut = []
+        let response = new Promise((resolve, reject) => {
+            const transaction = db.transaction(table, 'readonly')
+            const store = transaction.objectStore(table)
+
+            let workersList = []
+            store.openCursor().onsuccess = event => {
+                const cursor = event.target.result
+                if (cursor) {
+                    workersList.push(cursor.value)
+                    cursor.continue()
+                }
+            }
+
+            transaction.oncomplete = () => {
+                resolve(workersList)
+            }
+
+            transaction.onerror = event => {
+                reject(event)
+            }
+        })
+        await response.then(response => {
+            outPut = response
+        })
+        return outPut
+    },
+}
 app.config.globalProperties.$filters = {
     createId(list) {
         return createId(list)
@@ -134,8 +180,8 @@ export function executeQuery(query, variables) {
                 }
             })
             throw {
-                request: {status: 200},
-                response: {data: {errorKey: errorKey != null ? errorKey : 'graphql'}}
+                request: { status: 200 },
+                response: { data: { errorKey: errorKey != null ? errorKey : 'graphql' } }
             };
         }
         if (result.data.data != null) {

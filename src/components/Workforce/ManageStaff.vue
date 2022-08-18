@@ -1,92 +1,137 @@
 <template>
-	<Dialog v-model:visible="showWorkerDialog">
+	<Dialog v-model:visible="showWorkerDialog" :style="{ width: '50vw' }">
 		<div class="grid">
+			<div class="col-6">
+				<h5 class="label-add-worker">{{ $t('manageStaff.department') }}: </h5>
+			</div>
 			<div class="col-6 container-input-add-worker">
-				<div class="col-12">
-					<h5>{{ $t('manageStaff.workerData') }}</h5>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.name') }}: </h5>
+				<Dropdown v-model="newWorker.department" style="width: 100%;" optionLabel="description"
+					optionValue="code" :options="departments" :placeholder="$t('manageStaff.selectDepartment')" />
+			</div>
+		</div>
+		<div class="grid col-12">
+			<div class="col-6">
+				<Fieldset>
+					<template #legend>
+						<h5>{{ $t('manageStaff.workerData') }}</h5>
+					</template>
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.name') }}: </h5>
+						</div>
+						<div class="col-6">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+								v-model="newWorker.name" />
+						</div>
 					</div>
-					<div class="col-6">
-						<InputText class="input-add-worker" type="text" v-model="newWorker.name" />
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.surname') }}: </h5>
+						</div>
+						<div class="col-6">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="text"
+								v-model="newWorker.surname" />
+						</div>
 					</div>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.surname') }}: </h5>
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.age') }}: </h5>
+						</div>
+						<div class="col-6">
+							<InputText :disabled="newWorker.department == null" class="input-add-worker" type="number"
+								v-model="newWorker.age" />
+						</div>
 					</div>
-					<div class="col-6">
-						<InputText class="input-add-worker" type="text" v-model="newWorker.surname" />
-					</div>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.age') }}: </h5>
-					</div>
-					<div class="col-6">
-						<InputText class="input-add-worker" type="number" v-model="newWorker.age" />
-					</div>
-				</div>
+				</Fieldset>
 			</div>
 			<div class="col-6">
-				<div class="col-12">
-					<h5>{{ $t('manageStaff.positionCompany') }}</h5>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.workerRole') }}: </h5>
+				<Fieldset>
+					<template #legend>
+						<h5>{{ $t('manageStaff.positionCompany') }}</h5>
+					</template>
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.workerRole') }}: </h5>
+						</div>
+						<div class="col-6 container-input-add-worker">
+							<Dropdown :disabled="newWorker.department == null" v-model="newWorker.workerRole"
+								style="width: 10em;" optionLabel="description" optionValue="code" :options="workerRoles"
+								:placeholder="$t('manageStaff.workerRole')" />
+						</div>
 					</div>
-					<div class="col-6 container-input-add-worker">
-						<Dropdown v-model="newWorker.workerRole" style="width: 10em;" optionLabel="description"
-							optionValue="code" :options="workerRoles" :placeholder="$t('manageStaff.workerRole')" />
+					<div class="grid">
+						<div class="col-6">
+							<h5 class="label-add-worker">{{ $t('manageStaff.machine') }}: </h5>
+						</div>
+						<div class="col-6 container-input-add-worker">
+							<Dropdown :disabled="newWorker.department == null" v-model="newWorker.machine"
+								style="width: 10em;" :options="machines" :placeholder="$t('manageStaff.machine')" />
+						</div>
 					</div>
-				</div>
-				<div class="grid">
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.department') }}: </h5>
-					</div>
-					<div class="col-6 container-input-add-worker">
-						<Dropdown v-model="newWorker.department" style="width: 10em;" optionLabel="description"
-							optionValue="code" :options="departments"
-							:placeholder="$t('manageStaff.selectDepartment')" />
-					</div>
-					<div class="col-6">
-						<h5 class="label-add-worker">{{ $t('manageStaff.machine') }}: </h5>
-					</div>
-					<div class="col-6 container-input-add-worker">
-						<Dropdown v-model="newWorker.machine" style="width: 10em;" :options="machines"
-							:placeholder="$t('manageStaff.machine')" />
-					</div>
-				</div>
+				</Fieldset>
 			</div>
 		</div>
 		<Button style="float:right" :label="$t('manageStaff.newWorker')" icon="pi pi-plus" iconPos="right"
 			@click="addWorker()" />
 	</Dialog>
 	<div class="layout-dashboard">
-		<div class="col-12" style="height: 4em;"><Button style="float:right" :label="$t('manageStaff.addWorker')" icon="pi pi-plus"
-				iconPos="right" @click="openWorkerDialog()" /></div>
+		<div class="col-12" style="height: 4em;"><Button style="float:right" :label="$t('manageStaff.addWorker')"
+				icon="pi pi-plus" iconPos="right" @click="openWorkerDialog()" /></div>
 
 		<div class="col-12">
-			<DataTable :value="workers" responsiveLayout="scroll">
-				<Column field="name" :header="$t('manageStaff.name')"></Column>
-				<Column field="surname" :header="$t('manageStaff.surname')"></Column>
-				<Column field="age" :header="$t('manageStaff.age')"></Column>
-				<Column field="workerRole" :header="$t('manageStaff.workerRole')"></Column>
-				<Column field="department" :header="$t('manageStaff.department')">
-					<template #body="worker">
-						{{decodeDepartments(worker.data.department)}}
+
+			<DataTable :value="workers" responsiveLayout="scroll" filterDisplay="row" v-model:filters="filters">
+				<Column field="name" :header="$t('manageStaff.name')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
+							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
 					</template>
 				</Column>
-				<Column field="machine" :header="$t('manageStaff.machine')"></Column>
+				<Column field="surname" :header="$t('manageStaff.surname')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
+							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
+					</template>
+				</Column>
+				<Column field="age" :header="$t('manageStaff.age')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
+							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
+					</template>
+				</Column>
+				<Column field="workerRole" :header="$t('manageStaff.workerRole')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
+							:options="workerRoles" optionLabel="description" optionValue="code"
+							:placeholder="$t('manageStaff.workerRole')" />
+					</template>
+					<template #body="worker">
+						{{ decodeWorker(worker.data.workerRole) }}
+					</template>
+				</Column>
+				<Column field="department" :header="$t('manageStaff.department')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
+							:options="departments" optionLabel="description" optionValue="code"
+							:placeholder="$t('manageStaff.department')" />
+					</template>
+					<template #body="worker">
+						{{ decodeDepartments(worker.data.department) }}
+					</template>
+				</Column>
+				<Column field="machine" :header="$t('manageStaff.machine')" :showFilterMenu="false" :sortable="true">
+					<template #filter="{ filterModel, filterCallback }">
+						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
+							:options="machines" :placeholder="$t('manageStaff.machine')" />
+					</template>
+				</Column>
 			</DataTable>
 		</div>
 	</div>
 </template>
 
 <script>
+import { FilterMatchMode } from 'primevue/api';
 
 export default {
 	components: {
@@ -111,11 +156,20 @@ export default {
 				{ description: this.$t('roles.headMachine'), code: '1' },
 				{ description: this.$t('roles.helperMachine'), code: '2' },
 				{ description: this.$t('roles.stacker'), code: '3' },
-			]
+			],
+			filters: {
+				'name': { value: null, matchMode: FilterMatchMode.CONTAINS },
+				'surname': { value: null, matchMode: FilterMatchMode.CONTAINS },
+				'age': { value: null, matchMode: FilterMatchMode.CONTAINS },
+				'workerRole': { value: null, matchMode: FilterMatchMode.EQUALS },
+				'department': { value: null, matchMode: FilterMatchMode.EQUALS },
+				'machine': { value: null, matchMode: FilterMatchMode.EQUALS },
+			}
+
 		}
 	},
 	created() {
-		this.getWorkes()
+		this.getWorker()
 	},
 	mounted() {
 	},
@@ -129,39 +183,30 @@ export default {
 	},
 	methods: {
 		decodeDepartments(code) {
-			if(code === 1){
+			if (code === 1) {
 				return this.$t('departments.rotary')
-			}else if(code === 2){
-				return this.$t('roles.helperMachine')
-			}else if(code === 3){
-				return this.$t('roles.stacker')
-			}else{
+			} else if (code === 2) {
+				return this.$t('departments.flatStamp')
+			} else if (code === 3) {
+				return this.$t('departments.legatory')
+			} else {
 				return "N.D"
 			}
 		},
-		async getWorkes() {
-			return new Promise((resolve, reject) => {
-				const transaction = this.workersDB.transaction('rotaryWorkers', 'readonly')
-				const store = transaction.objectStore('rotaryWorkers')
-
-				let workersList = []
-				store.openCursor().onsuccess = event => {
-					const cursor = event.target.result
-					if (cursor) {
-						workersList.push(cursor.value)
-						this.workers = this.$filters.deepClone(workersList)
-						cursor.continue()
-					}
-				}
-
-				transaction.oncomplete = () => {
-					resolve(workersList)
-				}
-
-				transaction.onerror = event => {
-					reject(event)
-				}
-			})
+		decodeWorker(code) {
+			if (code === '1') {
+				return this.$t('roles.headMachine')
+			} else if (code === '2') {
+				return this.$t('roles.helperMachine')
+			} else if (code === '3') {
+				return this.$t('roles.stacker')
+			} else {
+				return "N.D"
+			}
+		},
+		async getWorker() {
+			let rotaryWorkers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers')
+			rotaryWorkers.forEach(worker => this.workers.push(worker))
 		},
 		addWorker() {
 			const workerItem = {
@@ -173,33 +218,19 @@ export default {
 				department: this.newWorker.department,
 				machine: this.newWorker.machine && this.newWorker.machine.trim(),
 			}
-			if (!workerItem) {
-				return
-			}
 			this.workers.push(workerItem)
-			this.insertNewWorker(workerItem)
+			if(workerItem.department === 1){
+				this.$db.insert(this.workersDB, 'rotaryWorkers', workerItem)
+			} else if(workerItem.department === 2){
+				this.$db.insert(this.workersDB, 'flatStampWorkers', workerItem)
+			} else {
+				this.$db.insert(this.workersDB, 'legatoryWorkers', workerItem)
+			}
 			this.newWorker = {}
 			this.showWorkerDialog = false
 		},
 		openWorkerDialog() {
 			this.showWorkerDialog = true
-			this.newWorker.id = this.workers.length + 1
-		},
-		async insertNewWorker(worker) {
-			return new Promise((resolve, reject) => {
-				const transaction = this.workersDB.transaction('rotaryWorkers', 'readwrite')
-				const store = transaction.objectStore('rotaryWorkers')
-				debugger
-				store.put(worker)
-
-				transaction.oncomplete = () => {
-					resolve('Machine added successfully')
-				}
-
-				transaction.onerror = event => {
-					reject(event)
-				}
-			})
 		},
 	},
 }

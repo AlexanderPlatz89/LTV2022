@@ -1,6 +1,12 @@
 {
     "dashboard":{},
+    "login": {
+        "signIn": "Sign In",
+        "toBabylon": " To the Portal LTV",
+        "welcome": "Welcome, please use the form to sign-in."
+    },
     "manageStaff":{
+        "contains":"Contains",
         "addWorker":"Add Worker",
         "workerData":"Worker Data",
         "name": "Name",

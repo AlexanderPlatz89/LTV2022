@@ -1,8 +1,14 @@
 {
-    "dashboard":{},
-    "manageStaff":{
-        "addWorker":"Aggiungi Operatore",
-        "workerData":"Dati Operatore",
+    "dashboard": {},
+    "login": {
+        "signIn": "Accedi",
+        "toBabylon": " Al Portale LTV",
+        "welcome": "Benvenuto, utilizza il modulo per accedere."
+    },
+    "manageStaff": {
+        "contains":"Inizia con...",
+        "addWorker": "Aggiungi Operatore",
+        "workerData": "Dati Operatore",
         "name": "Nome",
         "surname": "Cognome",
         "age": "Eta",
@@ -10,25 +16,24 @@
         "selectDepartment": "Seleziona Reparto",
         "department": "Reparto",
         "machine": "Macchina",
-        "positionCompany": "Posizione Aziendale" ,
-        "newWorker": "Nuovo Lavoratore"      
+        "positionCompany": "Posizione Aziendale",
+        "newWorker": "Nuovo Lavoratore"
     },
-    "menu":{
-        "manageStaff":"Gestisci operatori",
-        "manageMachines":"Gestisci macchinari"
+    "menu": {
+        "manageStaff": "Gestisci operatori",
+        "manageMachines": "Gestisci macchinari"
     },
-    "breadcrumb":{
-        "manageStaff":"Gestisci operatori"
+    "breadcrumb": {
+        "manageStaff": "Gestisci operatori"
     },
-    "departments":{
+    "departments": {
         "rotary": "Rotativa",
         "flatStamp": "Stampa Piana",
         "legatory": "Legatoria"
     },
-    "roles":{
+    "roles": {
         "headMachine": "Capo Macchina",
         "helperMachine": "Secondo di Macchina",
         "stacker": "Stackerista"
     }
-
 }
