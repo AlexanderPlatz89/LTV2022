@@ -17,6 +17,9 @@ const store = createStore({
         authService: new AuthService()
     },
     getters: {
+        editing: state => {
+            return state.editing;
+    },
         machinesDB: state => {
                 return state.machinesDB;
         },

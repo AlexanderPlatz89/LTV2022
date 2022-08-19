@@ -86,11 +86,23 @@
 						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
 							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
 					</template>
+					<template #body="worker">
+						<div v-if="!editing">{{ worker.data.name }}</div>
+						<div v-if="editing">
+							<InputText type="text" v-model="worker.data.name" />
+						</div>
+					</template>
 				</Column>
 				<Column field="surname" :header="$t('manageStaff.surname')" :showFilterMenu="false" :sortable="true">
 					<template #filter="{ filterModel, filterCallback }">
 						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
 							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
+					</template>
+					<template #body="worker">
+						<div v-if="!editing">{{ worker.data.surname }}</div>
+						<div v-if="editing">
+							<InputText type="text" v-model="worker.data.surname" />
+						</div>
 					</template>
 				</Column>
 				<Column field="age" :header="$t('manageStaff.age')" :showFilterMenu="false" :sortable="true">
@@ -98,31 +110,69 @@
 						<InputText type="text" v-model="filterModel.value" class="p-column-filter"
 							@input="filterCallback()" :placeholder="$t('manageStaff.contains')" />
 					</template>
+					<template #body="worker">
+						<div v-if="!editing">{{ worker.data.age }}</div>
+						<div v-if="editing">
+							<InputText type="text" v-model="worker.data.age" />
+						</div>
+					</template>
 				</Column>
-				<Column field="workerRole" :header="$t('manageStaff.workerRole')" :showFilterMenu="false" :sortable="true">
+				<Column field="workerRole" :header="$t('manageStaff.workerRole')" :showFilterMenu="false"
+					:sortable="true">
 					<template #filter="{ filterModel, filterCallback }">
 						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
 							:options="workerRoles" optionLabel="description" optionValue="code"
-							:placeholder="$t('manageStaff.workerRole')" />
+							:placeholder="$t('manageStaff.workerRole')" style="min-width: 10em;"/>
 					</template>
 					<template #body="worker">
-						{{ decodeWorker(worker.data.workerRole) }}
+						<div v-if="!editing">{{ decodeWorker(worker.data.workerRole) }}</div>
+						<div v-if="editing">
+							<Dropdown v-model="worker.data.workerRole" :options="workerRoles" optionLabel="description"
+								optionValue="code" style="min-width: 12.5em;"/>
+						</div>
 					</template>
 				</Column>
-				<Column field="department" :header="$t('manageStaff.department')" :showFilterMenu="false" :sortable="true">
+				<Column field="department" :header="$t('manageStaff.department')" :showFilterMenu="false"
+					:sortable="true">
 					<template #filter="{ filterModel, filterCallback }">
 						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
 							:options="departments" optionLabel="description" optionValue="code"
-							:placeholder="$t('manageStaff.department')" />
+							:placeholder="$t('manageStaff.department')" style="min-width: 10em;"/>
 					</template>
 					<template #body="worker">
-						{{ decodeDepartments(worker.data.department) }}
+						<div v-if="!editing">{{ decodeDepartments(worker.data.department) }}</div>
+						<div v-if="editing">
+							<Dropdown v-model="worker.data.department" :options="departments" optionLabel="description"
+								optionValue="code" style="min-width: 10em;"/>
+						</div>
 					</template>
 				</Column>
 				<Column field="machine" :header="$t('manageStaff.machine')" :showFilterMenu="false" :sortable="true">
 					<template #filter="{ filterModel, filterCallback }">
 						<Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
-							:options="machines" :placeholder="$t('manageStaff.machine')" />
+							:options="machines" :placeholder="$t('manageStaff.machine')" style="min-width: 5em;" />
+					</template>
+					<template #body="worker">
+						<div v-if="!editing">{{ worker.data.machine }}</div>
+						<div v-if="editing">
+							<Dropdown v-model="worker.data.machine" :options="machines" style="min-width: 5em;" />
+						</div>
+					</template>
+				</Column>
+				<Column>
+					<template #body="worker">
+						<div v-if="!editing">
+							<Button icon="pi pi-pencil" class="p-button-rounded p-button-info"
+								@click="startEditingWorker(worker.data)" />
+						</div>
+						<div v-if="editing">
+							<Button icon="pi pi-check" class="p-button-rounded p-button-info"
+								@click="editWorker(worker.data)" />
+								<Button icon="pi pi-times" class="p-button-rounded p-button-info" style="margin-left: .5em; margin-right: .5em;"
+								@click="cancelWorkerEditing()" />
+							<Button icon="pi pi-trash" class="p-button-rounded p-button-danger"
+								@click="deleteWorker(worker.data)" />
+						</div>
 					</template>
 				</Column>
 			</DataTable>
@@ -141,6 +191,7 @@ export default {
 			showWorkerDialog: false,
 			workers: [],
 			newWorker: {},
+			workersRestore: [],
 			departments: [
 				{ description: this.$t('departments.rotary'), code: 1 },
 				{ description: this.$t('departments.flatStamp'), code: 2 },
@@ -174,6 +225,9 @@ export default {
 	mounted() {
 	},
 	computed: {
+		editing() {
+			return this.$store.getters["editing"]
+		},
 		machinesDB() {
 			return this.$store.getters["machinesDB"]
 		},
@@ -182,6 +236,39 @@ export default {
 		}
 	},
 	methods: {
+		editWorker(worker) {
+			let table = this.$t('tables.workers' + worker.department)
+			this.$db.insert(this.workersDB, table, {
+				...worker,
+				name: worker.name.trim(),
+				surname: worker.surname.trim(),
+				age: worker.age.trim(),
+				workerRole: worker.workerRole.trim(),
+				department: worker.department,
+				machine: worker.machine.trim(),
+			})
+			this.stopEditing()
+		},
+		deleteWorker(worker) {
+			let table = this.$t('tables.workers' + worker.department)
+			this.workers = this.workers.filter(workerList => workerList.id !== worker.id)
+			this.$db.delete(this.workersDB, table, worker.id)
+		},
+		startEditingWorker(){
+			this.workersRestore = this.$filters.deepClone(this.workers)
+			this.startEditing()
+		},
+		cancelWorkerEditing(){
+			this.workers = this.$filters.deepClone(this.workersRestore)
+			this.workersRestore = []
+			this.stopEditing()
+		},
+		startEditing() {
+			this.$store.commit("setEditing", true)
+		},
+		stopEditing() {
+			this.$store.commit("setEditing", false)
+		},
 		decodeDepartments(code) {
 			if (code === 1) {
 				return this.$t('departments.rotary')
@@ -219,13 +306,8 @@ export default {
 				machine: this.newWorker.machine && this.newWorker.machine.trim(),
 			}
 			this.workers.push(workerItem)
-			if(workerItem.department === 1){
-				this.$db.insert(this.workersDB, 'rotaryWorkers', workerItem)
-			} else if(workerItem.department === 2){
-				this.$db.insert(this.workersDB, 'flatStampWorkers', workerItem)
-			} else {
-				this.$db.insert(this.workersDB, 'legatoryWorkers', workerItem)
-			}
+			let table = this.$t('tables.workers' + workerItem.department)
+			this.$db.insert(this.workersDB, table, workerItem)
 			this.newWorker = {}
 			this.showWorkerDialog = false
 		},

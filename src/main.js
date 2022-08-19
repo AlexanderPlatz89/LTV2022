@@ -55,6 +55,24 @@ app.component('qr-code', VueQRCodeComponent)
 
 app.config.globalProperties.$db = {
 
+    async delete(db, table, id) {
+
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(table, 'readwrite')
+            const store = transaction.objectStore(table)
+
+            store.delete(id)
+
+            transaction.oncomplete = () => {
+                resolve('Item successfully deleted.')
+            }
+
+            transaction.onerror = event => {
+                reject(event)
+            }
+        })
+    },
+
     async insert(db, table, objToInsert) {
         return new Promise((resolve, reject) => {
             const transaction = db.transaction(table, 'readwrite')

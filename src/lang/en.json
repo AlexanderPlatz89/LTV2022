@@ -1,5 +1,10 @@
 {
     "dashboard":{},
+    "tables": {
+        "workers1":"rotaryWorkers",
+        "workers2":"flatStampWorkers",
+        "workers3":"legatoryWorkers"
+    },
     "login": {
         "signIn": "Sign In",
         "toBabylon": " To the Portal LTV",
