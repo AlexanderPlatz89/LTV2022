@@ -4,15 +4,15 @@
 		<div class="login-content">
 			<img src="layout/images/LTV_logo.png" alt="babylon-layout" style="margin-bottom: 20px;"/>
 
-			<h1><span>{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
-			<p>{{$t('login.welcome')}}</p>
+			<h1 style="color: white;"><span style="color: white;">{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
+			<p style="color: white;">{{$t('login.welcome')}}</p>
 
-			<div class="login-input-wrapper">
+			<div class="login-input-wrapper" >
 				<InputText placeholder="Username" v-model="username" />
 				<i class="pi pi-user"></i>
 			</div>
 
-			<div class="login-input-wrapper">
+			<div class="login-input-wrapper" >
 				<InputText type="password" v-model="password" placeholder="Password" />
 				<i class="pi pi-lock"></i>
 			</div>
@@ -125,10 +125,11 @@ export default {
 .bg {
 
 	background-color: white;
-	height: 720px;
-	width: 720px;
+	height: 620px;
+	width: 620px;
 	margin: auto;
 	border-radius: 40px;
+	opacity: 20%;
 }
 .login-body{
 	max-width: 100%;
@@ -148,6 +149,7 @@ export default {
 }
 .login-input-wrapper{
 	max-width: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
