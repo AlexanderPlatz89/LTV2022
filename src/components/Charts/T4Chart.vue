@@ -1,6 +1,6 @@
 <template>
-<h5>T4</h5>
-		<Chart type="line" :data="outputT4" :options="chartCSS" />
+    <h5>T4</h5>
+    <Chart type="line" :data="outputT4" :options="chartCSS" />
 </template>
 
 <script>
@@ -9,10 +9,13 @@ import { ref } from 'vue';
 
 export default {
     created() {
-    setInterval(this.setDataChart, 2500)
-  },
+        this.outputT4.datasets[0].data = this.$filters.deepClone(this.productionData)
+        this.outputT4.labels = this.$filters.deepClone(this.timeList)
+        this.outputT4.datasets[1].data = this.$filters.deepClone(this.plannedProductionList)
+        setInterval(this.setDataChart, 2500)
+    },
     setup() {
-        const outputT4 =  ref(
+        const outputT4 = ref(
             {
                 labels: [],
                 datasets: [
@@ -64,29 +67,32 @@ export default {
         );
         return { outputT4, chartCSS }
     },
-    data(){
-        return{
-        timeList: [],
-        time: 0,
-        productionData: [],
-        plannedProductionList: []
+    data() {
+        return {
+            timeList: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00'],
+            time: 6,
+            productionData: [3200, 6500, 5500, 8000, 0, 8000, 5300],
+            plannedProductionList: [4500, 4500, 4500, 4500, 4500, 4500, 4500]
         }
     },
-     methods: {
-    setDataChart() {
-      let production = Math.floor(Math.floor(Math.random() * 9000) + 1000)
-      let plannedProduction = 4500
-      this.time = this.time+1
-      if(this.time > 23) this.time = 0
-      let timeString = this.time <= 9 ? '0'+this.time.toString()+':00' : this.time.toString()+':00'
-      this.timeList.push(timeString)
-      this.productionData.push(production)
-      this.plannedProductionList.push(plannedProduction)
-      this.outputT4.datasets[0].data = this.$filters.deepClone(this.productionData)
-      this.outputT4.labels = this.$filters.deepClone(this.timeList)
-      this.outputT4.datasets[1].data = this.$filters.deepClone(this.plannedProductionList)
-    }
-  },
+    methods: {
+        setDataChart() {
+            let production = Math.floor(Math.floor(Math.random() * 9000) + 1000)
+            let plannedProduction = 4500
+            this.time = this.time + 1
+            if (this.time > 23) this.time = 0
+            let timeString = this.time <= 9 ? '0' + this.time.toString() + ':00' : this.time.toString() + ':00'
+            this.timeList.push(timeString)
+            this.productionData.push(production)
+            this.plannedProductionList.push(plannedProduction)
+            this.productionData.shift()
+            this.timeList.shift()
+            this.plannedProductionList.shift()
+            this.outputT4.datasets[0].data = this.$filters.deepClone(this.productionData)
+            this.outputT4.labels = this.$filters.deepClone(this.timeList)
+            this.outputT4.datasets[1].data = this.$filters.deepClone(this.plannedProductionList)
+        }
+    },
 }
 </script>
 
