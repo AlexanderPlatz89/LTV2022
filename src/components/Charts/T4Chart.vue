@@ -69,10 +69,16 @@ export default {
     },
     data() {
         return {
-            timeList: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00'],
-            time: 6,
-            productionData: [3200, 6500, 5500, 8000, 0, 8000, 5300],
-            plannedProductionList: [4500, 4500, 4500, 4500, 4500, 4500, 4500]
+            timeList: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00'],
+            time: 12,
+            day: 1,
+            productionData: [3200, 6500, 5500, 8000, 12000, 8000, 5300],
+            plannedProductionList: [6500, 6500, 6500, 6500, 6500, 6500, 6500]
+        }
+    },
+    watch:{
+        day(){
+            this.$store.commit("setDay", this.day)
         }
     },
     methods: {
@@ -81,6 +87,8 @@ export default {
             let plannedProduction = 4500
             this.time = this.time + 1
             if (this.time > 23) this.time = 0
+            if(this.day == 0 || this.time == 0)this.day = this.day + 1
+            if(this.day == 6)this.day = 1
             let timeString = this.time <= 9 ? '0' + this.time.toString() + ':00' : this.time.toString() + ':00'
             this.timeList.push(timeString)
             this.productionData.push(production)

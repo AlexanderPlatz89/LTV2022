@@ -14,7 +14,8 @@ const store = createStore({
         progressLoaded: 30,
         progressTotal: 0,
         searchValue: null,
-        authService: new AuthService()
+        authService: new AuthService(),
+        day: 1
     },
     getters: {
         editing: state => {
@@ -44,6 +45,9 @@ const store = createStore({
                 progress = 99
             }
             return progress
+        },
+        day: state => {
+            return state.day;
         }
     },
     mutations: {
@@ -89,6 +93,9 @@ const store = createStore({
         },
         searchValue(state, searchValue) {
             state.searchValue = searchValue;
+        },
+        setDay(state, day){
+            state.day = day;
         }
     },
     actions: {

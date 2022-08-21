@@ -1,5 +1,11 @@
 {
-    "dashboard":{},
+    "days": {
+        "day1": "Monday", 
+        "day2": "Tuesday",  
+        "day3": "Wensday", 
+        "day4": "Thursday",  
+        "day5": "Friday" 
+    },
     "tables": {
         "workers1":"rotaryWorkers",
         "workers2":"flatStampWorkers",
@@ -22,7 +28,8 @@
         "department": "Department",
         "machine": "Machine",
         "positionCompany": "Position Company",
-        "newWorker": "New Worker"
+        "newWorker": "New Worker",
+        "turn": "Turn"
     },
     "menu":{
         "manageStaff":"Manage staff",

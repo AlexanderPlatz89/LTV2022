@@ -1,5 +1,6 @@
 <template>
 <div class="grid">
+	<div class="col-12" style="text-align: center"><h1>{{$t("days.day" + day)}}</h1></div>
 	<div class="col-3">
 		<T4Chart />
 	</div>
@@ -37,6 +38,11 @@ export default {
 	},
 	methods: {
 	},
+	computed: {
+		day(){
+			return this.$store.getters["day"]
+		}
+	}
 }
 </script>
 

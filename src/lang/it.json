@@ -1,5 +1,11 @@
 {
-    "dashboard": {},
+    "days": {
+        "day1": "Lunedi", 
+        "day2": "Martedi", 
+        "day3": "Mercoledi", 
+        "day4": "Giovedi", 
+        "day5": "Venerdi"
+    },
     "tables": {
         "workers1":"rotaryWorkers",
         "workers2":"flatStampWorkers",
@@ -22,7 +28,8 @@
         "department": "Reparto",
         "machine": "Macchina",
         "positionCompany": "Posizione Aziendale",
-        "newWorker": "Nuovo Lavoratore"
+        "newWorker": "Nuovo Lavoratore",
+        "turn": "Turno"
     },
     "menu": {
         "manageStaff": "Gestisci operatori",
