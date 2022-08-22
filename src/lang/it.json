@@ -1,5 +1,30 @@
 {
-    "dashboard": {},
+    "days": {
+        "day1": "Lunedi", 
+        "day2": "Martedi", 
+        "day3": "Mercoledi", 
+        "day4": "Giovedi", 
+        "day5": "Venerdi"
+    },
+    "turn": {
+        "1": "Mattino",
+        "2": "Pomeriggio",
+        "3": "Notte",
+        "4": "Assente",
+        "5": "Ferie"
+    },
+    "tables": {
+        "workers1":"rotaryWorkers",
+        "workers2":"flatStampWorkers",
+        "workers3":"legatoryWorkers"
+    },
+    "toasts": {
+        "invalidLogin": {
+            "severity": "error",
+            "summary": "Username o password errati",
+            "detail": "Inserisci le tue credenziali per accedere."
+          }
+    },
     "login": {
         "signIn": "Accedi",
         "toBabylon": " Al Portale LTV",
@@ -18,7 +43,13 @@
         "machine": "Macchina",
         "addMachine": "Aggiungi macchina",
         "positionCompany": "Posizione Aziendale",
-        "newWorker": "Nuovo Lavoratore"
+        "newWorker": "Nuovo Lavoratore",
+        "turn": "Turno",
+        "actualTurns": "Turni Attuali",
+        "nextTurns": "Turni settimana prossima",
+        "machineLeader":"Capomacchina",
+        "helper": "Secondo",
+        "stakerist":"stackerista"
     },
     "menu": {
         "manageStaff": "Gestisci operatori",

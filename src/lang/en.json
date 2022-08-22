@@ -1,5 +1,30 @@
 {
-    "dashboard":{},
+    "days": {
+        "day1": "Monday", 
+        "day2": "Tuesday",  
+        "day3": "Wensday", 
+        "day4": "Thursday",  
+        "day5": "Friday" 
+    },
+    "turn": {
+        "1": "Moorning",
+        "2": "Afternoon",
+        "3": "Night",
+        "4": "Absent",
+        "5": "Holidays"
+    },
+    "tables": {
+        "workers1":"rotaryWorkers",
+        "workers2":"flatStampWorkers",
+        "workers3":"legatoryWorkers"
+    },
+    "toasts": {
+        "invalidLogin": {
+            "severity": "error",
+            "summary": "Invalid username or password",
+            "detail": "You must re-enter your credential to log in."
+          }
+    },
     "login": {
         "signIn": "Sign In",
         "toBabylon": " To the Portal LTV",
@@ -18,7 +43,13 @@
         "machine": "Machine",
         "addMachine": "Add Machine",
         "positionCompany": "Position Company",
-        "newWorker": "New Worker"
+        "newWorker": "New Worker",
+        "turn": "Turn",
+        "actualTurns": "Actual Turns",
+        "nextTurns": " Next Turns",
+        "machineLeader":"Machine leader",
+        "helper": "Helper",
+        "stakerist":"stackerst"
     },
     "menu":{
         "manageStaff":"Manage staff",
