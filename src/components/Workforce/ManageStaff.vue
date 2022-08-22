@@ -1,6 +1,6 @@
 <template>
-<Dialog v-model:visible="showActualTurnsDialog" :style="{ width: '80vw' }">
- <div class="grid col-12">
+    <Dialog v-model:visible="showActualTurnsDialog" :style="{ width: '80vw' }">
+        <div class="grid col-12">
             <div class="col-6">
                 <Fieldset>
                     <template #legend>
@@ -10,32 +10,162 @@
                         <div class="col-4">
                             <h5>Mattino</h5>
                             <ul>
-                                <li>{{findWorkerByMachineRoleAndTurn('T4', 1, 1)}}</li>
-                                <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 1) !== ''">{{findWorkerByMachineRoleAndTurn('T4', 2, 1)}}</li>
-                                <li>{{findWorkerByMachineRoleAndTurn('T4', 3, 1)}}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T4', 1, 1) }}</li>
+                                <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 1) !== ''">
+                                    {{ findWorkerByMachineRoleAndTurn('T4', 2, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T4', 3, 1) }}</li>
                             </ul>
                         </div>
-                         <div class="col-4">
+                        <div class="col-4">
                             <h5>Pomeriggio</h5>
                             <ul>
-                                <li>{{findWorkerByMachineRoleAndTurn('T4', 1, 2)}}</li>
-                                <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 2) !== ''">{{findWorkerByMachineRoleAndTurn('T4', 2, 2)}}</li>
-                                <li>{{findWorkerByMachineRoleAndTurn('T4', 3, 2)}}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T4', 1, 2) }}</li>
+                                <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 2) !== ''">
+                                    {{ findWorkerByMachineRoleAndTurn('T4', 2, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T4', 3, 2) }}</li>
                             </ul>
                         </div>
-                         <div class="col-4">
+                        <div class="col-4">
                             <h5>Notte</h5>
                             <ul>
-                                <li>{{findWorkerByMachineRoleAndTurn('T4', 1, 3)}}</li>
-                                <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 3) !== ''">{{findWorkerByMachineRoleAndTurn('T4', 2, 3)}}</li>
-                                <li>{{findWorkerByMachineRoleAndTurn('T4', 3, 3)}}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T4', 1, 3) }}</li>
+                                <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 3) !== ''">
+                                    {{ findWorkerByMachineRoleAndTurn('T4', 2, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T4', 3, 3) }}</li>
                             </ul>
                         </div>
                     </div>
-                    </Fieldset>
+                </Fieldset>
+            </div>
+            <div class="col-6">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T5</h5>
+                    </template>
+                    <div class="grid col-12">
+                        <div class="col-4">
+                            <h5>Mattino</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 1, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 2, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 3, 1) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <h5>Pomeriggio</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 1, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 2, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 3, 2) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <h5>Notte</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 1, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 2, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T5', 3, 3) }}</li>
+                            </ul>
+                        </div>
                     </div>
+                </Fieldset>
+            </div>
+            <div class="col-6">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T6</h5>
+                    </template>
+                    <div class="grid col-12">
+                        <div class="col-4">
+                            <h5>Mattino</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 1, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 2, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 3, 1) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <h5>Pomeriggio</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 1, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 2, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 3, 2) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <h5>Notte</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 1, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 2, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T6', 3, 3) }}</li>
+                            </ul>
+                        </div>
                     </div>
-</Dialog>
+                </Fieldset>
+            </div>
+               <div class="col-6">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T7</h5>
+                    </template>
+                    <div class="grid col-12">
+                        <div class="col-4">
+                            <h5>Mattino</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 1, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 2, 1) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 3, 1) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <h5>Pomeriggio</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 1, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 2, 2) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 3, 2) }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-4">
+                            <h5>Notte</h5>
+                            <ul>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 1, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 2, 3) }}</li>
+                                <li>{{ findWorkerByMachineRoleAndTurn('T7', 3, 3) }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </Fieldset>
+            </div>
+              <div class="col-6">
+                <Fieldset>
+                    <template #legend>
+                          <h5>{{$t('roles.4')}}</h5>
+                    </template>
+                    <div class="grid col-12">
+                           <div class="col-4">
+                            <ul>
+                                <li v-for="worker in findSickWorkers()" :key="worker">{{ worker.surname }}</li>
+                                </ul>
+                           </div>
+                    </div>
+                </Fieldset>
+            </div>
+            <div class="col-6">
+                <Fieldset>
+                    <template #legend>
+                        <h5>{{$t('roles.5')}}</h5>
+                    </template>
+                    <div class="grid col-12">
+                           <div class="col-4">
+                            <ul>
+                                <li v-for="worker in findworkersOnvacation()" :key="worker">{{ worker.surname }}</li>
+                                </ul>
+                           </div>
+                    </div>
+                </Fieldset>
+            </div>
+        </div>
+    </Dialog>
     <Dialog v-model:visible="showWorkerDialog" :style="{ width: '50vw' }">
         <div class="grid">
             <div class="col-6">
@@ -122,193 +252,193 @@
             @click="addWorker()" />
     </Dialog>
     <Dialog v-model:visible="showTurnDialog" :style="{ width: '50vw' }">
-    <div class="grid col-12">
-        <div class="col-12">
-            <Fieldset>
-                <template #legend>
-                    <h5>T4</h5>
-                </template>
-                <div class="grid">
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Mattina</h5>
-                        <Dropdown v-model="machineLeaderT4_1" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(1, 'T4', machineLeaderT4_1)"
-                            :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT4_1" style="width: 10em" :options="workers"
-                            @change="setAiutant(1, 'T4', helperT4_1)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT4_1" style="width: 10em" :options="workers"
-                            @change="setStakerist(1, 'T4', stakeristT4_1)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
+        <div class="grid col-12">
+            <div class="col-12">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T4</h5>
+                    </template>
+                    <div class="grid">
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Mattina</h5>
+                            <Dropdown v-model="machineLeaderT4_1" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(1, 'T4', machineLeaderT4_1)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT4_1" style="width: 10em" :options="workers"
+                                @change="setHelper(1, 'T4', helperT4_1)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT4_1" style="width: 10em" :options="workers"
+                                @change="setStakerist(1, 'T4', stakeristT4_1)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Pomeriggio</h5>
+                            <Dropdown v-model="machineLeaderT4_2" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(2, 'T4', machineLeaderT4_2)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT4_2" style="width: 10em" :options="workers"
+                                @change="setHelper(2, 'T4', helperT4_2)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT4_2" style="width: 10em" :options="workers"
+                                @change="setStakerist(2, 'T4', stakeristT4_2)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Notte</h5>
+                            <Dropdown v-model="machineLeaderT4_3" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(3, 'T4', machineLeaderT4_3)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT4_3" style="width: 10em" :options="workers"
+                                @change="setHelper(3, 'T4', helperT4_3)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT4_3" style="width: 10em" :options="workers"
+                                @change="setStakerist(3, 'T4', stakeristT4_3)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
                     </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Pomeriggio</h5>
-                        <Dropdown v-model="machineLeaderT4_2" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(2, 'T4', machineLeaderT4_2)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT4_2" style="width: 10em" :options="workers"
-                            @change="setHelper(2, 'T4', helperT4_2)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT4_2" style="width: 10em" :options="workers"
-                            @change="setStakerist(2, 'T4', stakeristT4_2)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
+                </Fieldset>
+            </div>
+            <div class="col-12">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T5</h5>
+                    </template>
+                    <div class="grid">
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Mattina</h5>
+                            <Dropdown v-model="machineLeaderT5_1" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(1, 'T5', machineLeaderT5_1)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT5_1" style="width: 10em" :options="workers"
+                                @change="setHelper(1, 'T5', helperT5_1)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT5_1" style="width: 10em" :options="workers"
+                                @change="setStakerist(1, 'T5', stakeristT5_1)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Pomeriggio</h5>
+                            <Dropdown v-model="machineLeaderT5_2" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(2, 'T5', machineLeaderT5_2)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT5_2" style="width: 10em" :options="workers"
+                                @change="setHelper(2, 'T5', helperT5_2)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT5_2" style="width: 10em" :options="workers"
+                                @change="setStakerist(2, 'T5', stakeristT5_2)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Notte</h5>
+                            <Dropdown v-model="machineLeaderT5_3" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(3, 'T5', machineLeaderT5_3)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT5_3" style="width: 10em" :options="workers"
+                                @change="setHelper(3, 'T5', helperT5_3)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT5_3" style="width: 10em" :options="workers"
+                                @change="setStakerist(3, 'T5', stakeristT5_3)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
                     </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Notte</h5>
-                        <Dropdown v-model="machineLeaderT4_3" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(3, 'T4', machineLeaderT4_3)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT4_3" style="width: 10em" :options="workers"
-                            @change="setHelper(3, 'T4', helperT4_3)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT4_3" style="width: 10em" :options="workers"
-                            @change="setStakerist(3, 'T4', stakeristT4_3)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
+                </Fieldset>
+            </div>
+            <div class="col-12">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T6</h5>
+                    </template>
+                    <div class="grid">
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Mattina</h5>
+                             <Dropdown v-model="machineLeaderT6_1" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(1, 'T6', machineLeaderT6_1)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT6_1" style="width: 10em" :options="workers"
+                                @change="setHelper(1, 'T6', helperT6_1)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT6_1" style="width: 10em" :options="workers"
+                                @change="setStakerist(1, 'T6', stakeristT6_1)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Pomeriggio</h5>
+                            <Dropdown v-model="machineLeaderT6_2" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(2, 'T6', machineLeaderT6_2)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT6_2" style="width: 10em" :options="workers"
+                                @change="setHelper(2, 'T6', helperT6_2)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT6_2" style="width: 10em" :options="workers"
+                                @change="setStakerist(2, 'T6', stakeristT6_2)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Notte</h5>
+                            <Dropdown v-model="machineLeaderT6_3" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(3, 'T6', machineLeaderT6_3)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT6_3" style="width: 10em" :options="workers"
+                                @change="setHelper(3, 'T6', helperT6_3)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT6_3" style="width: 10em" :options="workers"
+                                @change="setStakerist(3, 'T6', stakeristT6_3)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
                     </div>
-                </div>
-            </Fieldset>
-        </div>
-        <div class="col-12">
-            <Fieldset>
-                <template #legend>
-                    <h5>T5</h5>
-                </template>
-                <div class="grid">
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Mattina</h5>
-                        <Dropdown v-model="machineLeaderT5_1" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(1, 'T5', machineLeaderT5_1)"
-                            :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT5_1" style="width: 10em" :options="workers"
-                            @change="setAiutant(1, 'T5', helperT5_1)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT5_1" style="width: 10em" :options="workers"
-                            @change="setStakerist(1, 'T5', stakeristT5_1)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
+                </Fieldset>
+            </div>
+            <div class="col-12">
+                <Fieldset>
+                    <template #legend>
+                        <h5>T7</h5>
+                    </template>
+                    <div class="grid">
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Mattina</h5>
+                            <Dropdown v-model="machineLeaderT7_1" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(1, 'T7', machineLeaderT7_1)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT7_1" style="width: 10em" :options="workers"
+                                @change="setHelper(1, 'T7', helperT7_1)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT7_1" style="width: 10em" :options="workers"
+                                @change="setStakerist(1, 'T7', stakeristT7_1)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Pomeriggio</h5>
+                            <Dropdown v-model="machineLeaderT7_2" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(2, 'T7', machineLeaderT7_2)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT7_2" style="width: 10em" :options="workers"
+                                @change="setHelper(2, 'T7', helperT7_2)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT7_2" style="width: 10em" :options="workers"
+                                @change="setStakerist(2, 'T7', stakeristT7_2)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
+                        <div class="col-4 container-input-add-worker">
+                            <h5>Notte</h5>
+                            <Dropdown v-model="machineLeaderT7_3" style="width: 10em" :options="workers"
+                                @change="setLeaderMachine(3, 'T7', machineLeaderT7_3)"
+                                :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="helperT7_3" style="width: 10em" :options="workers"
+                                @change="setHelper(3, 'T7', helperT7_3)" :placeholder="$t('manageStaff.helper')"
+                                optionLabel="surname" optionValue="id" />
+                            <Dropdown v-model="stakeristT7_3" style="width: 10em" :options="workers"
+                                @change="setStakerist(3, 'T7', stakeristT7_3)"
+                                :placeholder="$t('manageStaff.stakerist')" optionLabel="surname" optionValue="id" />
+                        </div>
                     </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Pomeriggio</h5>
-                        <Dropdown v-model="machineLeaderT5_2" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(2, 'T5', machineLeaderT5_2)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT5_2" style="width: 10em" :options="workers"
-                            @change="setHelper(2, 'T5', helperT5_2)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT5_2" style="width: 10em" :options="workers"
-                            @change="setStakerist(2, 'T5', stakeristT5_2)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Notte</h5>
-                        <Dropdown v-model="machineLeaderT5_3" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(3, 'T5', machineLeaderT5_3)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT5_3" style="width: 10em" :options="workers"
-                            @change="setHelper(3, 'T5', helperT5_3)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT5_3" style="width: 10em" :options="workers"
-                            @change="setStakerist(3, 'T5', stakeristT5_3)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                </div>
-            </Fieldset>
-        </div>
-         <div class="col-12">
-            <Fieldset>
-                <template #legend>
-                    <h5>T6</h5>
-                </template>
-                <div class="grid">
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Mattina</h5>
-                        <Dropdown v-model="machineLeaderT6_1" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(1, 'T6', machineLeaderT6_1)"
-                            :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT6_1" style="width: 10em" :options="workers"
-                            @change="setAiutant(1, 'T6', helperT6_1)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT6_1" style="width: 10em" :options="workers"
-                            @change="setStakerist(1, 'T6', stakeristT6_1)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Pomeriggio</h5>
-                        <Dropdown v-model="machineLeaderT6_2" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(2, 'T6', machineLeaderT6_2)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT6_2" style="width: 10em" :options="workers"
-                            @change="setHelper(2, 'T6', helperT6_2)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT6_2" style="width: 10em" :options="workers"
-                            @change="setStakerist(2, 'T6', stakeristT6_2)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Notte</h5>
-                        <Dropdown v-model="machineLeaderT6_3" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(3, 'T6', machineLeaderT6_3)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT6_3" style="width: 10em" :options="workers"
-                            @change="setHelper(3, 'T6', helperT6_3)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT6_3" style="width: 10em" :options="workers"
-                            @change="setStakerist(3, 'T6', stakeristT6_3)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                </div>
-            </Fieldset>
-        </div>
-         <div class="col-12">
-            <Fieldset>
-                <template #legend>
-                    <h5>T7</h5>
-                </template>
-                <div class="grid">
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Mattina</h5>
-                        <Dropdown v-model="machineLeaderT7_1" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(1, 'T7', machineLeaderT7_1)"
-                            :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT7_1" style="width: 10em" :options="workers"
-                            @change="setAiutant(1, 'T7', helperT7_1)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT7_1" style="width: 10em" :options="workers"
-                            @change="setStakerist(1, 'T7', stakeristT7_1)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Pomeriggio</h5>
-                        <Dropdown v-model="machineLeaderT7_2" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(2, 'T7', machineLeaderT7_2)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT7_2" style="width: 10em" :options="workers"
-                            @change="setHelper(2, 'T7', helperT7_2)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT7_2" style="width: 10em" :options="workers"
-                            @change="setStakerist(2, 'T7', stakeristT7_2)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                    <div class="col-4 container-input-add-worker">
-                        <h5>Notte</h5>
-                        <Dropdown v-model="machineLeaderT7_3" style="width: 10em" :options="workers"
-                            @change="setLeaderMachine(3, 'T7', machineLeaderT7_3)"
-                             :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="helperT7_3" style="width: 10em" :options="workers"
-                            @change="setHelper(3, 'T7', helperT7_3)" :placeholder="$t('manageStaff.helper')"
-                            optionLabel="surname" optionValue="id" />
-                        <Dropdown v-model="stakeristT7_3" style="width: 10em" :options="workers"
-                            @change="setStakerist(3, 'T7', stakeristT7_3)" :placeholder="$t('manageStaff.stakerist')"
-                            optionLabel="surname" optionValue="id" />
-                    </div>
-                </div>
-            </Fieldset>
-        </div>
+                </Fieldset>
+            </div>
         </div>
     </Dialog>
     <div class="layout-dashboard">
         <Button style="float: right" :label="$t('manageStaff.nextTurns')" icon="pi pi-plus" iconPos="right"
             @click="openTurnDialog()" />
-            <Button style="float: right" :label="$t('manageStaff.actualTurns')" icon="pi pi-plus" iconPos="right"
+        <Button style="float: right" :label="$t('manageStaff.actualTurns')" icon="pi pi-plus" iconPos="right"
             @click="openActualTurnsDialog()" />
         <div class="col-12" style="height: 4em"><Button style="float: right" :label="$t('manageStaff.addWorker')"
                 icon="pi pi-plus" iconPos="right" @click="openWorkerDialog()" /></div>
@@ -359,7 +489,7 @@
                             :placeholder="$t('manageStaff.workerRole')" style="min-width: 10em" />
                     </template>
                     <template #body="worker">
-                        <div v-if="!editing">{{ decodeWorker(worker.data.workerRole) }}</div>
+                        <div v-if="!editing">{{ $t('roles.'+worker.data.workerRole) }}</div>
                         <div v-if="editing">
                             <Dropdown v-model="worker.data.workerRole" :options="workerRoles" optionLabel="description"
                                 optionValue="code" style="min-width: 12.5em" />
@@ -393,18 +523,18 @@
                         </div>
                     </template>
                 </Column>
-                 <Column field="turn" :header="$t('manageStaff.turn')" :showFilterMenu="false" :sortable="true">
+                <Column field="turn" :header="$t('manageStaff.turn')" :showFilterMenu="false" :sortable="true">
                     <template #filter="{ filterModel, filterCallback }">
                         <Dropdown v-model="filterModel.value" class="p-column-filter" @change="filterCallback()"
                             :options="turns" optionLabel="description" optionValue="code"
-                             :placeholder="$t('manageStaff.turn')" style="min-width: 5em" />
+                            :placeholder="$t('manageStaff.turn')" style="min-width: 5em" />
                     </template>
                     <template #body="worker">
-                        <div v-if="!editing">{{ $t('turn.'+ worker.data.turn) }}</div>
+                        <div v-if="!editing">{{ $t('turn.' + worker.data.turn) }}</div>
                         <div v-if="editing">
-                         <Dropdown v-model="worker.data.turn" class="p-column-filter"
-                            :options="turns" optionLabel="description" optionValue="code"
-                            :placeholder="$t('manageStaff.turn')" style="min-width: 5em" />
+                            <Dropdown v-model="worker.data.turn" class="p-column-filter" :options="turns"
+                                optionLabel="description" optionValue="code" :placeholder="$t('manageStaff.turn')"
+                                style="min-width: 5em" />
                         </div>
                     </template>
                 </Column>
@@ -475,7 +605,6 @@ export default {
             showWorkerDialog: false,
             showTurnDialog: false,
             showActualTurnsDialog: false,
-            workers: [],
             operatorSelected: null,
             newWorker: {},
             workersRestore: [],
@@ -491,9 +620,11 @@ export default {
             ],
             machines: ['T4', 'T5', 'T6', 'T7'],
             workerRoles: [
-                { description: this.$t('roles.headMachine'), code: '1' },
-                { description: this.$t('roles.helperMachine'), code: '2' },
-                { description: this.$t('roles.stacker'), code: '3' },
+                { description: this.$t('roles.1'), code: '1' },
+                { description: this.$t('roles.2'), code: '2' },
+                { description: this.$t('roles.3'), code: '3' },
+                { description: this.$t('roles.4'), code: '4' },
+                { description: this.$t('roles.5'), code: '5' }
             ],
             filters: {
                 name: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -502,14 +633,10 @@ export default {
                 workerRole: { value: null, matchMode: FilterMatchMode.EQUALS },
                 department: { value: null, matchMode: FilterMatchMode.EQUALS },
                 machine: { value: null, matchMode: FilterMatchMode.EQUALS },
-                 turn: { value: null, matchMode: FilterMatchMode.EQUALS },
+                turn: { value: null, matchMode: FilterMatchMode.EQUALS },
             },
         };
     },
-    created() {
-        this.getWorker();
-    },
-    mounted() { },
     computed: {
         editing() {
             return this.$store.getters['editing'];
@@ -520,9 +647,20 @@ export default {
         workersDB() {
             return this.$store.getters['workersDB'];
         },
+        workers(){
+             return this.$store.getters['workers'];
+        }
     },
     methods: {
-        findWorkerByMachineRoleAndTurn(machine, role, turn){
+        findSickWorkers(){
+            const sickWorkers = this.workers.filter(worker => worker.workerRole == 4)
+            return sickWorkers != null ? sickWorkers : []
+        },
+         findworkersOnvacation(){
+            const workersOnvacation = this.workers.filter(worker => worker.workerRole == 5)
+            return workersOnvacation != null ? workersOnvacation : []
+        },
+        findWorkerByMachineRoleAndTurn(machine, role, turn) {
             const worker = this.workers.find(worker => worker.machine === machine && worker.workerRole == role && worker.turn == turn)
             return worker != null ? worker.surname : ''
         },
@@ -591,21 +729,6 @@ export default {
             } else {
                 return 'N.D';
             }
-        },
-        decodeWorker(code) {
-            if (code === '1') {
-                return this.$t('roles.headMachine');
-            } else if (code === '2') {
-                return this.$t('roles.helperMachine');
-            } else if (code === '3') {
-                return this.$t('roles.stacker');
-            } else {
-                return 'N.D';
-            }
-        },
-        async getWorker() {
-            let rotaryWorkers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers');
-            rotaryWorkers.forEach((worker) => this.workers.push(worker));
         },
         addWorker() {
             const workerItem = {

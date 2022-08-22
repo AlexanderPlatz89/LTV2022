@@ -54,8 +54,10 @@
         "legatory": "Legatoria"
     },
     "roles": {
-        "headMachine": "Capo Macchina",
-        "helperMachine": "Secondo di Macchina",
-        "stacker": "Stackerista"
+        "1": "Capo Macchina",
+        "2": "Secondo di Macchina",
+        "3": "Stackerista",
+        "4": "Malattia",
+        "5":"Ferie"
     }
 }

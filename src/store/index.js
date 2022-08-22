@@ -5,6 +5,8 @@ const store = createStore({
     modules: {
     },
     state: {
+        time: 12,
+        workers: [],
         machinesDB: null,
         workersDB: null,
         endpoint: (location.hostname.search("localhost") !== -1 ? location.protocol + '//' + location.hostname + ':8081' : location.protocol + '//' + location.hostname),
@@ -18,6 +20,12 @@ const store = createStore({
         day: 1
     },
     getters: {
+        time: state => {
+            return state.time;
+    },
+        workers: state => {
+            return state.workers;
+    },
         editing: state => {
             return state.editing;
     },
@@ -51,6 +59,12 @@ const store = createStore({
         }
     },
     mutations: {
+        setTime(state, time) {
+            state.time = time;
+        },
+        setWorkers(state, workers) {
+            state.workers = workers;
+        },
         setMachinesDB(state, machinesDB) {
             state.machinesDB = machinesDB;
         },

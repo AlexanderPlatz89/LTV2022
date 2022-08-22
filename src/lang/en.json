@@ -54,8 +54,10 @@
         "legatory": "Legatory"
     },
     "roles":{
-        "headMachine": "Head Machine",
-        "helperMachine": "Helper Machine",
-        "stacker": "Stacker"
+        "1": "Head Machine",
+        "2": "Helper Machine",
+        "3": "Stacker",
+        "4": "Sickness",
+        "5":"holiday"
     }
 }

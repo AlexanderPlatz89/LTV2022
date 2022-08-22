@@ -79,6 +79,9 @@ export default {
     watch:{
         day(){
             this.$store.commit("setDay", this.day)
+        },
+        time(){
+            this.$store.commit("setTime", this.time)
         }
     },
     methods: {
