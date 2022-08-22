@@ -9,7 +9,9 @@
     "turn": {
         "1": "Moorning",
         "2": "Afternoon",
-        "3": "Night"
+        "3": "Night",
+        "4": "Absent",
+        "5": "Holidays"
     },
     "tables": {
         "workers1":"rotaryWorkers",

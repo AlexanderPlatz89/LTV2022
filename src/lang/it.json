@@ -9,7 +9,9 @@
     "turn": {
         "1": "Mattino",
         "2": "Pomeriggio",
-        "3": "Notte"
+        "3": "Notte",
+        "4": "Assente",
+        "5": "Ferie"
     },
     "tables": {
         "workers1":"rotaryWorkers",
