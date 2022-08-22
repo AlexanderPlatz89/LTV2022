@@ -6,6 +6,11 @@
         "day4": "Thursday",  
         "day5": "Friday" 
     },
+    "turn": {
+        "1": "Moorning",
+        "2": "Afternoon",
+        "3": "Night"
+    },
     "tables": {
         "workers1":"rotaryWorkers",
         "workers2":"flatStampWorkers",
@@ -29,7 +34,12 @@
         "machine": "Machine",
         "positionCompany": "Position Company",
         "newWorker": "New Worker",
-        "turn": "Turn"
+        "turn": "Turn",
+        "actualTurns": "Actual Turns",
+        "nextTurns": " Next Turns",
+        "machineLeader":"Machine leader",
+        "helper": "Helper",
+        "stakerist":"stackerst"
     },
     "menu":{
         "manageStaff":"Manage staff",

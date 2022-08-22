@@ -6,6 +6,11 @@
         "day4": "Giovedi", 
         "day5": "Venerdi"
     },
+    "turn": {
+        "1": "Mattino",
+        "2": "Pomeriggio",
+        "3": "Notte"
+    },
     "tables": {
         "workers1":"rotaryWorkers",
         "workers2":"flatStampWorkers",
@@ -29,7 +34,12 @@
         "machine": "Macchina",
         "positionCompany": "Posizione Aziendale",
         "newWorker": "Nuovo Lavoratore",
-        "turn": "Turno"
+        "turn": "Turno",
+        "actualTurns": "Turni Attuali",
+        "nextTurns": "Turni settimana prossima",
+        "machineLeader":"Capomacchina",
+        "helper": "Secondo",
+        "stakerist":"stackerista"
     },
     "menu": {
         "manageStaff": "Gestisci operatori",

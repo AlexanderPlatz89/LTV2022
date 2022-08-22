@@ -77,7 +77,6 @@ app.config.globalProperties.$db = {
         return new Promise((resolve, reject) => {
             const transaction = db.transaction(table, 'readwrite')
             const store = transaction.objectStore(table)
-            debugger
             store.put(objToInsert)
 
             transaction.oncomplete = () => {
