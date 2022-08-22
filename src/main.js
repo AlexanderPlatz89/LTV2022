@@ -55,6 +55,38 @@ app.component('qr-code', VueQRCodeComponent)
 
 app.config.globalProperties.$db = {
 
+    async createDB(schema, version, tablesList) {
+        let db = null
+        new Promise((resolve, reject) => {
+            if (db) {
+                resolve(db)
+            }
+
+            let request = window.indexedDB.open(schema, version)
+
+            request.onerror = event => {
+                console.error('ERROR: Unable to open database', event)
+                reject('Error')
+            }
+            request.onsuccess = event => {
+                db = event.target.result
+                store.commit("set"+schema, db)
+                resolve(db)
+            }
+
+            request.onupgradeneeded = event => {
+                let db = event.target.result
+                tablesList.forEach(table => {
+                    db.createObjectStore(table, {
+                        autoIncrement: true,
+                        keyPath: 'id'
+                    })
+                })
+            }
+        })
+        return db
+    },
+
     async delete(db, table, id) {
 
         return new Promise((resolve, reject) => {
