@@ -1,19 +1,18 @@
 <template>
 	<div class="login-body">
-		<Toast />
-		<div class="login-panel"></div>
+		<span class="bg"> </span>
 		<div class="login-content">
-			<img src="layout/images/LTV_logo.png" alt="babylon-layout"/>
+			<img src="layout/images/LTV_logo.png" alt="babylon-layout" style="margin-bottom: 20px;"/>
 
-			<h1><span>{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
-			<p>{{$t('login.welcome')}}</p>
+			<h1 style="color: white;"><span style="color: white;">{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
+			<p style="color: white;">{{$t('login.welcome')}}</p>
 
-			<div class="login-input-wrapper">
+			<div class="login-input-wrapper" >
 				<InputText placeholder="Username" v-model="username" />
 				<i class="pi pi-user"></i>
 			</div>
 
-			<div class="login-input-wrapper">
+			<div class="login-input-wrapper" >
 				<InputText type="password" v-model="password" placeholder="Password" />
 				<i class="pi pi-lock"></i>
 			</div>
@@ -43,7 +42,9 @@ export default {
 	},
 	methods: {
 		authenticate() {
-			this.$router.push({ path: '/dashboard' });
+			if(this.username === 'echego' && this.password === '123' || this.username === 'Echego' && this.password === '123'){
+				this.$router.push({ path: '/manageStaff' });
+			}
 		},
 		async createMachinesDB() {
 			return new Promise((resolve, reject) => {
@@ -121,30 +122,40 @@ export default {
 </script>
 
 <style scoped>
+.bg {
+
+	background-color: white;
+	height: 620px;
+	width: 620px;
+	margin: auto;
+	border-radius: 40px;
+	opacity: 20%;
+}
 .login-body{
-	margin:auto;
-	padding: auto;
+	max-width: 100%;
 	background-image: url("./galassia.jpg");
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-.login-panel {
-	opacity: 40%;
-	left: auto;
-	top: -140%;
-	position: absolute;
+	display: flex;
 }
 .login-content {
+	max-width: 100%;
+	padding: 30em;
+	margin: auto;
+	overflow: hidden;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 .login-input-wrapper{
+	max-width: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 .login-input-wrapper input{
+	max-width: 100%;
 	text-align: center;
 
 }
