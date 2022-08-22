@@ -18,6 +18,13 @@
         "workers2":"flatStampWorkers",
         "workers3":"legatoryWorkers"
     },
+    "toasts": {
+        "invalidLogin": {
+            "severity": "error",
+            "summary": "Username o password errati",
+            "detail": "Inserisci le tue credenziali per accedere."
+          }
+    },
     "login": {
         "signIn": "Accedi",
         "toBabylon": " Al Portale LTV",

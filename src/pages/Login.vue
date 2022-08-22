@@ -42,9 +42,16 @@ export default {
 	},
 	methods: {
 		authenticate() {
-			if(this.username === 'echego' && this.password === '123' || this.username === 'Echego' && this.password === '123'){
-				this.$router.push({ path: '/manageStaff' });
-			}
+			if(this.username === 'echego' && this.password === '123' || this.username === 'apiazza' && this.password === 'MinkiaPino12345!'){
+				this.$router.push({ path: '/dashboard' });
+			} else {
+				this.$toast.add({
+            severity: 'error',
+            summary: this.$t('toasts.invalidLogin.summary'),
+            detail: this.$t('toasts.invalidLogin.detail'),
+            life: 3000
+          })
+		}
 		},
 		async createMachinesDB() {
 			return new Promise((resolve, reject) => {

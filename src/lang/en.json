@@ -18,6 +18,13 @@
         "workers2":"flatStampWorkers",
         "workers3":"legatoryWorkers"
     },
+    "toasts": {
+        "invalidLogin": {
+            "severity": "error",
+            "summary": "Invalid username or password",
+            "detail": "You must re-enter your credential to log in."
+          }
+    },
     "login": {
         "signIn": "Sign In",
         "toBabylon": " To the Portal LTV",
