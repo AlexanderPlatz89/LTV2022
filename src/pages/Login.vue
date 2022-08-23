@@ -1,7 +1,7 @@
 <template>
 	<div class="login-body">
 		<span class="bg"> </span>
-		<div class="login-content">
+		<div class="login-content xl:col-12 md:col-6 sm:col-3">
 			<img src="layout/images/LTV_logo.png" alt="babylon-layout" style="margin-bottom: 20px;"/>
 
 			<h1 style="color: white;"><span style="color: white;">{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
@@ -136,14 +136,15 @@ export default {
 }
 .login-content {
 	max-width: 100%;
-	padding: 30em;
-	margin: auto;
+	margin: 20vh -3em;
 	overflow: hidden;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: fixed;
 }
+
 .login-input-wrapper{
 	max-width: 100%;
 	width: 100%;
@@ -152,7 +153,6 @@ export default {
 	align-items: center;
 }
 .login-input-wrapper input{
-	max-width: 100%;
 	text-align: center;
 
 }
