@@ -7,6 +7,7 @@
         "day5": "Friday" 
     },
     "turn": {
+        "undefined":"",
         "1": "Moorning",
         "2": "Afternoon",
         "3": "Night"
@@ -41,9 +42,20 @@
         "helper": "Helper",
         "stakerist":"stackerst"
     },
+    "manageWorksheet": {
+        "worksheetNumber": "Worksheet number",
+        "machine":"Machine",
+        "signature": "Signature",
+        "accumulation":"Accumulation",
+        "authorizedWaste":"AuthorizedWaste",
+        "numberOfCopies":"Number of copies",
+        "status":"Status",
+        "newWorksheet":"New worksheet"
+    },
     "menu":{
-        "manageStaff":"Manage staff",
-        "manageMachines":"Manage machines"
+        "manageStaff":"Staff",
+        "manageMachines":"Machines",
+        "manageWorksheets": "Worksheets"
     },
     "breadcrumb":{
         "manageStaff":"Manage staff"
@@ -59,5 +71,10 @@
         "3": "Stacker",
         "4": "Sickness",
         "5":"holiday"
+    },
+    "status":{
+        "1": "To work",
+        "2": "In production",
+        "3": "Finisced"
     }
 }

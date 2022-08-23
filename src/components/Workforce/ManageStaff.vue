@@ -103,7 +103,7 @@
                     </div>
                 </Fieldset>
             </div>
-               <div class="col-6">
+            <div class="col-6">
                 <Fieldset>
                     <template #legend>
                         <h5>T7</h5>
@@ -136,31 +136,31 @@
                     </div>
                 </Fieldset>
             </div>
-              <div class="col-6">
+            <div class="col-6">
                 <Fieldset>
                     <template #legend>
-                          <h5>{{$t('roles.4')}}</h5>
+                        <h5>{{ $t('roles.4') }}</h5>
                     </template>
                     <div class="grid col-12">
-                           <div class="col-4">
+                        <div class="col-4">
                             <ul>
                                 <li v-for="worker in findSickWorkers()" :key="worker">{{ worker.surname }}</li>
-                                </ul>
-                           </div>
+                            </ul>
+                        </div>
                     </div>
                 </Fieldset>
             </div>
             <div class="col-6">
                 <Fieldset>
                     <template #legend>
-                        <h5>{{$t('roles.5')}}</h5>
+                        <h5>{{ $t('roles.5') }}</h5>
                     </template>
                     <div class="grid col-12">
-                           <div class="col-4">
+                        <div class="col-4">
                             <ul>
                                 <li v-for="worker in findworkersOnvacation()" :key="worker">{{ worker.surname }}</li>
-                                </ul>
-                           </div>
+                            </ul>
+                        </div>
                     </div>
                 </Fieldset>
             </div>
@@ -351,7 +351,7 @@
                     <div class="grid">
                         <div class="col-4 container-input-add-worker">
                             <h5>Mattina</h5>
-                             <Dropdown v-model="machineLeaderT6_1" style="width: 10em" :options="workers"
+                            <Dropdown v-model="machineLeaderT6_1" style="width: 10em" :options="workers"
                                 @change="setLeaderMachine(1, 'T6', machineLeaderT6_1)"
                                 :placeholder="$t('manageStaff.machineLeader')" optionLabel="surname" optionValue="id" />
                             <Dropdown v-model="helperT6_1" style="width: 10em" :options="workers"
@@ -436,12 +436,20 @@
         </div>
     </Dialog>
     <div class="layout-dashboard">
-        <Button style="float: right" :label="$t('manageStaff.nextTurns')" icon="pi pi-plus" iconPos="right"
-            @click="openTurnDialog()" />
-        <Button style="float: right" :label="$t('manageStaff.actualTurns')" icon="pi pi-plus" iconPos="right"
-            @click="openActualTurnsDialog()" />
-        <div class="col-12" style="height: 4em"><Button style="float: right" :label="$t('manageStaff.addWorker')"
-                icon="pi pi-plus" iconPos="right" @click="openWorkerDialog()" /></div>
+        <div class="grid col-12">
+            <div class="col-4">
+                <Button :label="$t('manageStaff.nextTurns')" icon="pi pi-plus" iconPos="right"
+                    @click="openTurnDialog()" />
+            </div>
+            <div class="col-4" style="text-align: center;">
+                <Button :label="$t('manageStaff.actualTurns')" icon="pi pi-users" iconPos="right"
+                    @click="openActualTurnsDialog()" />
+            </div>
+            <div class="col-4">
+                <Button style="float: right" :label="$t('manageStaff.addWorker')" icon="pi pi-user-plus" iconPos="right"
+                    @click="openWorkerDialog()" />
+            </div>
+        </div>
 
         <div class="col-12">
             <DataTable :value="workers" responsiveLayout="scroll" filterDisplay="row" v-model:filters="filters">
@@ -489,7 +497,7 @@
                             :placeholder="$t('manageStaff.workerRole')" style="min-width: 10em" />
                     </template>
                     <template #body="worker">
-                        <div v-if="!editing">{{ $t('roles.'+worker.data.workerRole) }}</div>
+                        <div v-if="!editing">{{ $t('roles.' + worker.data.workerRole) }}</div>
                         <div v-if="editing">
                             <Dropdown v-model="worker.data.workerRole" :options="workerRoles" optionLabel="description"
                                 optionValue="code" style="min-width: 12.5em" />
@@ -541,16 +549,22 @@
                 <Column>
                     <template #body="worker">
                         <div v-if="!editing">
-                            <Button icon="pi pi-pencil" class="p-button-rounded p-button-info"
+                            <Button icon="pi pi-user-edit" class="p-button-rounded p-button-info"
                                 @click="startEditingWorker(worker.data)" />
                         </div>
-                        <div v-if="editing">
-                            <Button icon="pi pi-check" class="p-button-rounded p-button-info"
-                                @click="editWorker(worker.data)" />
-                            <Button icon="pi pi-times" class="p-button-rounded p-button-info"
-                                style="margin-left: 0.5em; margin-right: 0.5em" @click="cancelWorkerEditing()" />
-                            <Button icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                                @click="deleteWorker(worker.data)" />
+                        <div v-if="editing" class="grid col-12">
+                            <div class="col-12">
+                                <Button icon="pi pi-check" class="p-button-rounded p-button-info"
+                                    @click="editWorker(worker.data)" />
+                            </div>
+                            <div class="col-12">
+                                <Button icon="pi pi-times" class="p-button-rounded p-button-info"
+                                    @click="cancelWorkerEditing()" />
+                            </div>
+                            <div class="col-12">
+                                <Button icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                    @click="deleteWorker(worker.data)" />
+                            </div>
                         </div>
                     </template>
                 </Column>
@@ -647,16 +661,16 @@ export default {
         workersDB() {
             return this.$store.getters['workersDB'];
         },
-        workers(){
-             return this.$store.getters['workers'];
+        workers() {
+            return this.$store.getters['workers'];
         }
     },
     methods: {
-        findSickWorkers(){
+        findSickWorkers() {
             const sickWorkers = this.workers.filter(worker => worker.workerRole == 4)
             return sickWorkers != null ? sickWorkers : []
         },
-         findworkersOnvacation(){
+        findworkersOnvacation() {
             const workersOnvacation = this.workers.filter(worker => worker.workerRole == 5)
             return workersOnvacation != null ? workersOnvacation : []
         },
@@ -701,7 +715,8 @@ export default {
         },
         deleteWorker(worker) {
             let table = this.$t('tables.workers' + worker.department);
-            this.workers = this.workers.filter((workerList) => workerList.id !== worker.id);
+            const newWorkersList = this.workers.filter((workerList) => workerList.id !== worker.id);
+            this.$store.commit("setWorkers", newWorkersList)
             this.$db.delete(this.workersDB, table, worker.id);
         },
         startEditingWorker() {

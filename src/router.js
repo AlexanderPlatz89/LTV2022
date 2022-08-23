@@ -27,6 +27,16 @@ const routes = [
         }
     },
     {
+        path: '/manageWorksheets',
+        name: 'manageWorksheets',
+        exact: true,
+        component: () => import('./components/ManageWorksheets/ManageWorksheets.vue'),
+        meta: {
+            breadcrumb: [{ label: 'manageWorksheets' }],
+            requiresAuth: false
+        }
+    },
+    {
         path: '/manageMachines',
         name: 'manageMachines',
         exact: true,

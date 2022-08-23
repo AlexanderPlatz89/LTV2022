@@ -29,6 +29,7 @@ export default {
 	async created() {
 		this.machinesDB = await this.$db.createDB('MachinesDB', 1, ['flatStamMachines', 'rotaryMachines', 'legatoryMachines'])
 		this.workersDB = await this.$db.createDB('WorkersDB', 1, ['flatStamWorkers', 'rotaryWorkers', 'legatoryWorkers'])
+		this.worksheetsDB = await this.$db.createDB('WorksheetsDB', 1, ['flatStamWorksheets', 'rotaryWorksheets', 'legatoryWorksheets'])
 	},
 	data() {
 		return {
@@ -36,6 +37,7 @@ export default {
 			password: null,
 			machinesDB: null,
 			workersDB: null,
+			worksheetsDB: null,
 			signIn: ''
 		}
 	},
