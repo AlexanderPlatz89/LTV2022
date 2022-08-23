@@ -50,7 +50,8 @@
         "authorizedWaste":"Scarti autorizzati",
         "numberOfCopies":"Numero di copie",
         "status":"Stato",
-        "newWorksheet":"Nuova Papella"
+        "newWorksheet":"Nuova Papella",
+        "publishingCompany": "Casa editrice"
     },
     "menu": {
         "manageStaff": "Operatori",

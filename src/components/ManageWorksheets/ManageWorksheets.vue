@@ -1,7 +1,46 @@
 <template>
-<Dialog v-model:visible="showWorksheetDialog" :style="{ width: '80vw' }">
-Inserisci nuova lavorazione
-</Dialog>
+    <Dialog v-model:visible="showWorksheetDialog" :style="{ width: '80vw' }">
+        <div class="grid">
+            <div class="col-6">
+                <h5 class="label-add-worksheet">{{ $t('manageWorksheet.worksheetNumber') }}:</h5>
+            </div>
+            <div class="col-6">
+                <InputText class="input-add-worksheet" type="text" v-model="newWorksheet.worksheetNumber" />
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <h5 class="label-add-worksheet">{{ $t('manageWorksheet.publishingCompany') }}:</h5>
+            </div>
+            <div class="col-6 container-input-add-worksheet">
+                <Dropdown v-model="newWorksheet.publishingCompany" style="width: 10em" :options="publishingCompanies"
+                    :placeholder="$t('manageWorksheet.publishingCompany')" />
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <h5 class="label-add-worksheet">{{ $t('manageStaff.machine') }}:</h5>
+            </div>
+            <div class="col-6 container-input-add-worksheet">
+                <Dropdown v-model="newWorksheet.machine" style="width: 10em" :options="machines"
+                    :placeholder="$t('manageStaff.machine')" />
+            </div>
+        </div>
+        <div class="col-12">
+            <Button style="float: right" :label="$t('manageWorksheet.newSignature')" icon="pi pi-book" iconPos="right"
+                @click="addSignature()" />
+        </div>
+        <div class="grid col-12" v-if="addNewSignature">
+            <div class="col-6">
+                {{addNewSignature}}
+                <Fieldset>
+                    <template #legend>
+                        <h5>{{ $t('manageStaff.workerData') }}</h5>
+                    </template>
+                </Fieldset>
+            </div>
+        </div>
+    </Dialog>
     <div class="col-12" style="height: 4em;">
         <div class="col-12">
             <Button style="float: right" :label="$t('manageWorksheet.newWorksheet')" icon="pi pi-book" iconPos="right"
@@ -47,9 +86,14 @@ export default {
     components: {},
     data() {
         return {
+            addNewSignature: false,
+            publishingCompanies: ['Mondadori', 'Larousse', 'Rizzoli', 'Deagostini', 'Sejer'],
+            machines: ['T4', 'T5', 'T6', 'T7'],
             newWorksheet: {
                 id: (Math.random() * 10000).toFixed(0),
+                signatures: []
             },
+            newSignature: {},
             showWorksheetDialog: false,
             expandedRows: [],
             worksheets: [
@@ -116,6 +160,10 @@ export default {
         }
     },
     methods: {
+        addSignature() {
+            this.addNewSignature = true
+            this.newSignature.id = 516
+        },
         openWorksheetDialog() {
             this.showWorksheetDialog = true
         },
@@ -123,7 +171,6 @@ export default {
             return 'row-' + data.status
         },
         onRowExpand(event) {
-            debugger
             this.$toast.add({
                 severity: 'info', summary: this.$t('manageWorksheet.worksheetNumber') +
                     ': ' + event.data.worksheetNumber, detail: event.data.publishingCompany, life: 3000
@@ -147,5 +194,17 @@ export default {
 .row-3 {
     background-color: rgba(151, 211, 88, 0.493) !important;
     border-left: 3px solid rgb(60, 116, 0);
+}
+
+.container-input-add-worksheet {
+    padding: 0.5em;
+}
+
+.input-add-worksheet {
+    width: 10em !important;
+}
+
+.label-add-worksheet {
+    margin-top: 0.25em;
 }
 </style>

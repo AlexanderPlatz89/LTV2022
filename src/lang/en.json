@@ -50,7 +50,8 @@
         "authorizedWaste":"AuthorizedWaste",
         "numberOfCopies":"Number of copies",
         "status":"Status",
-        "newWorksheet":"New worksheet"
+        "newWorksheet":"New worksheet",
+        "publishingCompany": "Publishing Company"
     },
     "menu":{
         "manageStaff":"Staff",

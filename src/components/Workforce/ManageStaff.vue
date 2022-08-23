@@ -754,7 +754,8 @@ export default {
                 workerRole: this.newWorker.workerRole && this.newWorker.workerRole.trim(),
                 department: this.newWorker.department,
                 machine: this.newWorker.machine && this.newWorker.machine.trim(),
-                turn: this.newWorker.turn
+                turn: this.newWorker.turn,
+                list: [{nome: 'alessandro'}]
             };
             this.workers.push(workerItem);
             let table = this.$t('tables.workers' + workerItem.department);
