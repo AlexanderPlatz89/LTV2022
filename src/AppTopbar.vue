@@ -1,7 +1,7 @@
 <template>
 	<div class="layout-topbar clearfix">
 		<button class="layout-topbar-logo p-link" @click="goDashboard">
-			<img id="layout-topbar-logo" alt="babylon-layout" src="layout/images/logo-white.png"/>
+			<img id="layout-topbar-logo" alt="babylon-layout" src="LTV_MINILOGO.jpg"/>
 		</button>
 
 		<button class="layout-menu-button p-link" @click="onMenuButtonClick">
@@ -204,3 +204,8 @@
 		}
 	}
 </script>
+<style scoped>
+.layout-topbar{
+	background-color: red !important;
+}
+</style>

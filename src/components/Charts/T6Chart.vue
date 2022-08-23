@@ -1,5 +1,5 @@
 <template>
-    <h5>T6</h5>
+    <h5 style="margin-top: 0.5em; text-align: center; background-color: rgba(128, 128, 128, 0.19); border: 4px solid rgba(0, 255, 238, 0.474)">T6</h5>
     <Chart type="line" :data="outputT6" :options="chartCSS" />
 </template>
 

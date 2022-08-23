@@ -42,7 +42,7 @@ const routes = [
         exact: true,
         component: () => import('./components/Machines/ManageMachines.vue'),
         meta: {
-            breadcrumb: [{ label: 'Manage Machines' }],
+            breadcrumb: [{ label: 'workSheet' }],
             requiresAuth: false
         }
     },

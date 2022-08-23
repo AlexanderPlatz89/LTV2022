@@ -3,7 +3,7 @@
 		<div class="grid">
 			<div class="col-6">
 				<a href="/" class="logo-container">
-					<img src="layout/images/logo-black.png" alt="babylon-layout"/>
+					<img src="layout/images/LTV_logo.png" alt="LTV" style="height:70px"/>
 				</a>
 			</div>
 			<div class="col-6 footer-icons">

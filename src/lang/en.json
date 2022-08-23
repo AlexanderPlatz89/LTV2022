@@ -59,7 +59,8 @@
         "manageWorksheets": "Worksheets"
     },
     "breadcrumb":{
-        "manageStaff":"Manage staff"
+        "manageStaff":"Manage staff",
+        "workSheet": "Operator"
     },
     "departments":{
         "rotary": "Rotary",

@@ -1,21 +1,17 @@
 <template>
 	<div class="login-body">
-		<Toast />
-		<div class="login-panel"></div>
+		<span class="bg"> </span>
 		<div class="login-content">
-			<img src="layout/images/LTV_logo.png" alt="babylon-layout" />
+			<img src="layout/images/LTV_logo.png" alt="babylon-layout" style="margin-bottom: 20px;"/>
 
-			<h1><span>{{ $t('login.signIn') }}</span>{{ $t('login.toBabylon') }}</h1>
-			<p>{{ $t('login.welcome') }}</p>
+			<h1 style="color: white;"><span style="color: white;">{{$t('login.signIn')}}</span>{{$t('login.toBabylon')}}</h1>
+			<p style="color: white;">{{$t('login.welcome')}}</p>
 
-			<div class="login-input-wrapper">
+			<div class="login-input-wrapper" >
 				<InputText placeholder="Username" v-model="username" />
-				<i class="pi pi-user"></i>
-			</div>
-
-			<div class="login-input-wrapper">
+				<i class="pi pi-lock"></i><br>
 				<InputText type="password" v-model="password" placeholder="Password" />
-				<i class="pi pi-lock"></i>
+				<i class="pi pi-user"></i>
 			</div>
 
 			<Button :label="$t('login.signIn')" @click="authenticate()" />
@@ -27,9 +23,10 @@
 
 export default {
 	async created() {
-		this.machinesDB = await this.$db.createDB('MachinesDB', 1, ['flatStamMachines', 'rotaryMachines', 'legatoryMachines'])
-		this.workersDB = await this.$db.createDB('WorkersDB', 1, ['flatStamWorkers', 'rotaryWorkers', 'legatoryWorkers'])
-		this.worksheetsDB = await this.$db.createDB('WorksheetsDB', 1, ['flatStamWorksheets', 'rotaryWorksheets', 'legatoryWorksheets'])
+		this.machinesDB = await this.createMachinesDB()
+		this.workersDB = await this.createWorkersDB()
+		this.$store.commit("setMachinesDB", this.machinesDB)
+		this.$store.commit("setWorkersDB", this.workersDB)
 	},
 	data() {
 		return {
@@ -37,47 +34,125 @@ export default {
 			password: null,
 			machinesDB: null,
 			workersDB: null,
-			worksheetsDB: null,
 			signIn: ''
 		}
 	},
 	methods: {
 		authenticate() {
-			this.$router.push({ path: '/dashboard' });
+			if(this.username === 'echego' && this.password === '123' || this.username === 'Echego' && this.password === '123'){
+				this.$router.push({ path: '/manageStaff' });
+			}
+		},
+		async createMachinesDB() {
+			return new Promise((resolve, reject) => {
+				if (this.machinesDB) {
+					resolve(this.machinesDB)
+				}
+
+				let request = window.indexedDB.open('machinesDB', 1)
+
+				request.onerror = event => {
+					console.error('ERROR: Unable to open database', event)
+					reject('Error')
+				}
+
+				request.onsuccess = event => {
+					this.machinesDB = event.target.result
+					resolve(this.machinesDB)
+				}
+
+				request.onupgradeneeded = event => {
+					let machinesDB = event.target.result
+					machinesDB.createObjectStore('rotaryMachines', {
+						autoIncrement: true,
+						keyPath: 'id'
+					})
+					machinesDB.createObjectStore('flatStampMachines', {
+						autoIncrement: true,
+						keyPath: 'id'
+					})
+					machinesDB.createObjectStore('legatoryMachines', {
+						autoIncrement: true,
+						keyPath: 'id'
+					})
+				}
+			})
+		},
+
+		async createWorkersDB() {
+			return new Promise((resolve, reject) => {
+				if (this.workersDB) {
+					resolve(this.workersDB)
+				}
+
+				let request = window.indexedDB.open('workersDB', 1)
+
+				request.onerror = event => {
+					console.error('ERROR: Unable to open database', event)
+					reject('Error')
+				}
+
+				request.onsuccess = event => {
+					this.workersDB = event.target.result
+					resolve(this.workersDB)
+				}
+
+				request.onupgradeneeded = event => {
+					let workersDB = event.target.result
+					workersDB.createObjectStore('rotaryWorkers', {
+					autoIncrement: true,
+						keyPath: 'id'
+					})
+					workersDB.createObjectStore('flatStampWorkers', {
+						autoIncrement: true,
+						keyPath: 'id'
+					})
+					workersDB.createObjectStore('legatoryWorkers', {
+						autoIncrement: true,
+						keyPath: 'id'
+					})
+				}
+			})
 		},
 	}
 }
 </script>
 
 <style scoped>
-.login-body {
+.bg {
+
+	background-color: white;
+	height: 620px;
+	width: 620px;
 	margin: auto;
-	padding: auto;
+	border-radius: 40px;
+	opacity: 20%;
+}
+.login-body{
+	max-width: 100%;
 	background-image: url("./galassia.jpg");
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	display: flex;
 }
-
-.login-panel {
-	opacity: 40%;
-	left: auto;
-	top: -140%;
-	position: absolute;
-}
-
 .login-content {
+	max-width: 100%;
+	padding: 30em;
+	margin: auto;
+	overflow: hidden;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-
-.login-input-wrapper {
+.login-input-wrapper{
+	max-width: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-
-.login-input-wrapper input {
+.login-input-wrapper input{
+	max-width: 100%;
 	text-align: center;
 
 }

@@ -59,7 +59,8 @@
         "manageWorksheets": "Lavorazioni"
     },
     "breadcrumb": {
-        "manageStaff": "Gestisci operatori"
+        "manageStaff": "Gestisci operatori",
+        "workSheet": "Operatore"
     },
     "departments": {
         "rotary": "Rotativa",
