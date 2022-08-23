@@ -3,7 +3,7 @@
         <div class="grid col-12">
             <div class="col-6">
                 <Fieldset>
-                    <template>
+                    <template #legend>
                         <h5>T4</h5>
                     </template>
                     <div class="grid col-12">
