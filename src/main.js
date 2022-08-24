@@ -106,6 +106,7 @@ app.config.globalProperties.$db = {
     },
 
     async insert(db, table, objToInsert) {
+        debugger
         return new Promise((resolve, reject) => {
             const transaction = db.transaction(table, 'readwrite')
             const store = transaction.objectStore(table)

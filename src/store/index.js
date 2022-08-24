@@ -1,4 +1,4 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 import AuthService from "@/service/AuthService";
 
 const store = createStore({
@@ -9,6 +9,7 @@ const store = createStore({
         workers: [],
         machinesDB: null,
         workersDB: null,
+        worksheetsDB: null,
         endpoint: (location.hostname.search("localhost") !== -1 ? location.protocol + '//' + location.hostname + ':8081' : location.protocol + '//' + location.hostname),
         user: null,
         editing: false,
@@ -22,18 +23,21 @@ const store = createStore({
     getters: {
         time: state => {
             return state.time;
-    },
+        },
         workers: state => {
             return state.workers;
-    },
+        },
         editing: state => {
             return state.editing;
-    },
+        },
         machinesDB: state => {
-                return state.machinesDB;
+            return state.machinesDB;
         },
         workersDB: state => {
             return state.workersDB;
+        },
+        worksheetsDB: state => {
+            return state.worksheetsDB;
         },
         token: state => {
             if (state.user != null) {
@@ -70,6 +74,9 @@ const store = createStore({
         },
         setWorkersDB(state, workersDB) {
             state.workersDB = workersDB;
+        },
+        setWorksheetsDB(state, worksheetsDB) {
+            state.worksheetsDB = worksheetsDB;
         },
         setUser(state, user) {
             state.user = user;
@@ -108,7 +115,7 @@ const store = createStore({
         searchValue(state, searchValue) {
             state.searchValue = searchValue;
         },
-        setDay(state, day){
+        setDay(state, day) {
             state.day = day;
         }
     },
@@ -163,10 +170,10 @@ const store = createStore({
             context.commit('setProgressLoaded', 0)
             context.commit('setProgressTotal', 0)
         },
-        async authenticate(context,{username,password}) {
-            await context.state.authService.authenticate(username,password).then(token => {
+        async authenticate(context, { username, password }) {
+            await context.state.authService.authenticate(username, password).then(token => {
                 if (token != null) {
-                    context.commit('setUser', {username: username, token: token})
+                    context.commit('setUser', { username: username, token: token })
                     context.dispatch('macchina/macchine')
                     context.dispatch('cliente/clienti')
                     context.dispatch('fornitore/fornitori')
@@ -174,7 +181,7 @@ const store = createStore({
                     context.dispatch('prodotto/tipiProdotto')
                     context.dispatch('prodotto/um')
                     context.dispatch('prodotto/trattamenti')
-                }else{
+                } else {
                     throw 403
                 }
             })

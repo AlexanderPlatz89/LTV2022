@@ -15,7 +15,10 @@
     "tables": {
         "workers1":"rotaryWorkers",
         "workers2":"flatStampWorkers",
-        "workers3":"legatoryWorkers"
+        "workers3":"legatoryWorkers",
+        "worksheets1": "rotaryWorksheets",
+        "worksheets2": "flatStampWorksheets",
+        "worksheets3": "legatoryWorksheets"
     },
     "login": {
         "signIn": "Sign In",
@@ -43,6 +46,7 @@
         "stakerist":"stackerst"
     },
     "manageWorksheet": {
+        "department": "Department",
         "worksheetNumber": "Worksheet number",
         "machine":"Machine",
         "signature": "Signature",
@@ -51,7 +55,13 @@
         "numberOfCopies":"Number of copies",
         "status":"Status",
         "newWorksheet":"New worksheet",
-        "publishingCompany": "Publishing Company"
+        "publishingCompany": "Publishing Company",
+        "newSignature": "Insert signature",
+        "signatureNumber": "Worksheet number",
+        "insertSignature":"Insert Signature",
+        "color": "color",
+        "specialColor": "Special color",
+        "insertWorksheet": "Insert Worksheet"
     },
     "menu":{
         "manageStaff":"Staff",
@@ -76,6 +86,7 @@
     "status":{
         "1": "To work",
         "2": "In production",
-        "3": "Finisced"
+        "3": "Finisced",
+        "N.D.": "N.D."
     }
 }

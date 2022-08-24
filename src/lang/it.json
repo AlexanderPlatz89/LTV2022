@@ -15,7 +15,10 @@
     "tables": {
         "workers1":"rotaryWorkers",
         "workers2":"flatStampWorkers",
-        "workers3":"legatoryWorkers"
+        "workers3":"legatoryWorkers",
+        "worksheets1": "rotaryWorksheets",
+        "worksheets2": "flatStampWorksheets",
+        "worksheets3": "legatoryWorksheets"
     },
     "login": {
         "signIn": "Accedi",
@@ -43,6 +46,7 @@
         "stakerist":"stackerista"
     },
     "manageWorksheet": {
+        "department": "Reparto",
         "worksheetNumber": "Papella",
         "machine":"Macchina",
         "signature": "Segnatura",
@@ -51,7 +55,13 @@
         "numberOfCopies":"Numero di copie",
         "status":"Stato",
         "newWorksheet":"Nuova Papella",
-        "publishingCompany": "Casa editrice"
+        "publishingCompany": "Casa editrice",
+        "newSignature": "Inserisci segnatura",
+        "signatureNumber": "Segnatura numero",
+        "insertSignature":"Inserisi segnatura",
+        "color": "colore",
+        "specialColor": "Pantone",
+        "insertWorksheet": "Inserisci papella"
     },
     "menu": {
         "manageStaff": "Operatori",
@@ -76,6 +86,7 @@
     "status":{
         "1": "Da produrre",
         "2": "In produzione",
-        "3": "Finito"
+        "3": "Finito",
+        "N.D.": "N.D."
     }
 }
