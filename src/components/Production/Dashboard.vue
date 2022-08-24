@@ -53,6 +53,7 @@ export default {
 	},
 	created() {
 		this.getWorkers()
+		this.getWorksheets()
 	},
 	mounted() {
 	},
@@ -65,6 +66,9 @@ export default {
 		},
 		workersDB() {
 			return this.$store.getters['workersDB'];
+		},
+		worksheetsDB() {
+			return this.$store.getters['worksheetsDB'];
 		},
 		day() {
 			return this.$store.getters["day"]
@@ -89,12 +93,16 @@ export default {
 			let rotaryWorkers = await this.$db.readFromTable(this.workersDB, 'rotaryWorkers');
 			this.$store.commit("setWorkers", rotaryWorkers)
 		},
+		async getWorksheets() {
+			let rotaryWorksheets = await this.$db.readFromTable(this.worksheetsDB, 'rotaryWorksheets');
+			this.$store.commit("setWorksheets", rotaryWorksheets)
+		},
 		t4Workers() {
 			let turn = 0
 			if (this.time >= 6 && this.time <= 13) turn = 1
 			if (this.time >= 14 && this.time <= 21) turn = 2
-			if (this.time == 22 || this.time == 23 || this.time == 0 ||  this.time == 1 || this.time == 2 ||
-			this.time == 3 || this.time == 4 || this.time == 5) turn = 3
+			if (this.time == 22 || this.time == 23 || this.time == 0 || this.time == 1 || this.time == 2 ||
+				this.time == 3 || this.time == 4 || this.time == 5) turn = 3
 			let t4Workers = this.workers.filter(worker => worker.machine == 'T4' && worker.turn == turn)
 			let machineLeader = t4Workers.find(worker => worker.workerRole == 1)
 			let helper = t4Workers.find(worker => worker.workerRole == 2)
@@ -109,8 +117,8 @@ export default {
 			let turn = 0
 			if (this.time >= 6 && this.time <= 13) turn = 1
 			if (this.time >= 14 && this.time <= 21) turn = 2
-			if (this.time == 22 || this.time == 23 || this.time == 0 ||  this.time == 1 || this.time == 2 ||
-			this.time == 3 || this.time == 4 || this.time == 5) turn = 3
+			if (this.time == 22 || this.time == 23 || this.time == 0 || this.time == 1 || this.time == 2 ||
+				this.time == 3 || this.time == 4 || this.time == 5) turn = 3
 			let t5Workers = this.workers.filter(worker => worker.machine == 'T5' && worker.turn == turn)
 			let machineLeader = t5Workers.find(worker => worker.workerRole == 1)
 			let helper = t5Workers.find(worker => worker.workerRole == 2)
@@ -125,8 +133,8 @@ export default {
 			let turn = 0
 			if (this.time >= 6 && this.time <= 13) turn = 1
 			if (this.time >= 14 && this.time <= 21) turn = 2
-			if (this.time == 22 || this.time == 23 || this.time == 0 ||  this.time == 1 || this.time == 2 ||
-			this.time == 3 || this.time == 4 || this.time == 5) turn = 3
+			if (this.time == 22 || this.time == 23 || this.time == 0 || this.time == 1 || this.time == 2 ||
+				this.time == 3 || this.time == 4 || this.time == 5) turn = 3
 			let t6Workers = this.workers.filter(worker => worker.machine == 'T6' && worker.turn == turn)
 			let machineLeader = t6Workers.find(worker => worker.workerRole == 1)
 			let helper = t6Workers.find(worker => worker.workerRole == 2)
@@ -141,8 +149,8 @@ export default {
 			let turn = 0
 			if (this.time >= 6 && this.time <= 13) turn = 1
 			if (this.time >= 14 && this.time <= 21) turn = 2
-			if (this.time == 22 || this.time == 23 || this.time == 0 ||  this.time == 1 || this.time == 2 ||
-			this.time == 3 || this.time == 4 || this.time == 5) turn = 3
+			if (this.time == 22 || this.time == 23 || this.time == 0 || this.time == 1 || this.time == 2 ||
+				this.time == 3 || this.time == 4 || this.time == 5) turn = 3
 			let t7Workers = this.workers.filter(worker => worker.machine == 'T7' && worker.turn == turn)
 			let machineLeader = t7Workers.find(worker => worker.workerRole == 1)
 			let helper = t7Workers.find(worker => worker.workerRole == 2)
