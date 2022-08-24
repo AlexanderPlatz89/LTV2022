@@ -213,7 +213,6 @@ export default {
             newSignature: {},
             showWorksheetDialog: false,
             expandedRows: [],
-            worksheets: [],
             filters: {
                 name: { value: null, matchMode: FilterMatchMode.CONTAINS },
             }
@@ -222,11 +221,13 @@ export default {
     computed: {
         worksheetsDB() {
             return this.$store.getters["worksheetsDB"]
+        },
+        worksheets(){
+            return this.$store.getters["worksheets"]
         }
     },
     methods: {
         insertNewWorksheet() {
-            debugger
             const signaturesFormatted = this.$filters.deepClone(this.newWorksheet.signatures)
             const objFormatted = {
                 id: this.newWorksheet.id.trim(),

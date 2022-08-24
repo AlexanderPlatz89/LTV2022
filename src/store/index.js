@@ -7,6 +7,7 @@ const store = createStore({
     state: {
         time: 12,
         workers: [],
+        worksheets: [],
         machinesDB: null,
         workersDB: null,
         worksheetsDB: null,
@@ -26,6 +27,9 @@ const store = createStore({
         },
         workers: state => {
             return state.workers;
+        },
+        worksheets: state => {
+            return state.worksheets;
         },
         editing: state => {
             return state.editing;
@@ -77,6 +81,9 @@ const store = createStore({
         },
         setWorksheetsDB(state, worksheetsDB) {
             state.worksheetsDB = worksheetsDB;
+        },
+        setWorksheets(state, worksheets) {
+            state.worksheets = worksheets;
         },
         setUser(state, user) {
             state.user = user;
