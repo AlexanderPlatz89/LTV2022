@@ -40,7 +40,7 @@ export default {
 	methods: {
 		authenticate() {
 			if(this.username === 'echego' && this.password === '123' || this.username === 'Echego' && this.password === '123'){
-				this.$router.push({ path: '/manageStaff' });
+				this.$router.push({ path: '/dashboard' });
 			}
 		},
 		async createMachinesDB() {

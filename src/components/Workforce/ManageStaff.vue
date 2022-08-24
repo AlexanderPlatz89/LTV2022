@@ -8,7 +8,7 @@
                     </template>
                     <div class="grid col-12">
                         <div class="col-4">
-                            <h5>Mattino</h5>
+                            <h5 style="margin-left: 2em">Mattino</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T4', 1, 1) }}</li>
                                 <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 1) !== ''">
@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Pomeriggio</h5>
+                            <h5 style="margin-left: 2em">Pomeriggio</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T4', 1, 2) }}</li>
                                 <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 2) !== ''">
@@ -28,7 +28,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Notte</h5>
+                            <h5 style="margin-left: 2em">Notte</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T4', 1, 3) }}</li>
                                 <li v-if="findWorkerByMachineRoleAndTurn('T4', 2, 3) !== ''">
@@ -47,7 +47,7 @@
                     </template>
                     <div class="grid col-12">
                         <div class="col-4">
-                            <h5>Mattino</h5>
+                            <h5 style="margin-left: 2em">Mattino</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T5', 1, 1) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T5', 2, 1) }}</li>
@@ -55,7 +55,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Pomeriggio</h5>
+                            <h5 style="margin-left: 2em">Pomeriggio</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T5', 1, 2) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T5', 2, 2) }}</li>
@@ -63,7 +63,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Notte</h5>
+                            <h5 style="margin-left: 2em">Notte</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T5', 1, 3) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T5', 2, 3) }}</li>
@@ -80,7 +80,7 @@
                     </template>
                     <div class="grid col-12">
                         <div class="col-4">
-                            <h5>Mattino</h5>
+                            <h5 style="margin-left: 2em">Mattino</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T6', 1, 1) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T6', 2, 1) }}</li>
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Pomeriggio</h5>
+                            <h5 style="margin-left: 2em">Pomeriggio</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T6', 1, 2) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T6', 2, 2) }}</li>
@@ -96,7 +96,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Notte</h5>
+                            <h5 style="margin-left: 2em">Notte</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T6', 1, 3) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T6', 2, 3) }}</li>
@@ -113,7 +113,7 @@
                     </template>
                     <div class="grid col-12">
                         <div class="col-4">
-                            <h5>Mattino</h5>
+                            <h5 style="margin-left: 2em">Mattino</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T7', 1, 1) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T7', 2, 1) }}</li>
@@ -121,7 +121,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Pomeriggio</h5>
+                            <h5 style="margin-left: 2em">Pomeriggio</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T7', 1, 2) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T7', 2, 2) }}</li>
@@ -129,7 +129,7 @@
                             </ul>
                         </div>
                         <div class="col-4">
-                            <h5>Notte</h5>
+                            <h5 style="margin-left: 2em">Notte</h5>
                             <ul>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T7', 1, 3) }}</li>
                                 <li>{{ findWorkerByMachineRoleAndTurn('T7', 2, 3) }}</li>
@@ -709,5 +709,12 @@ export default {
     position: relative;
     align-content: center;
     justify-content: center;
+}
+ul{
+    list-style: none;
+    margin: auto;
+}
+ul li{
+    text-decoration: none;
 }
 </style>
