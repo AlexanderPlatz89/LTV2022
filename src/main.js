@@ -5,6 +5,7 @@ import router from './router';
 import store from './store';
 import axios from 'axios';
 import moment from 'moment';
+import VueExcelEditor from 'vue-excel-editor'
 import VueQRCodeComponent from 'vue-qrcode-component'
 import VueQrcodeReader from "vue3-qrcode-reader";
 import App from './App.vue';
@@ -46,6 +47,7 @@ const app = createApp({
 });
 
 app.use(PrimeVue, { ripple: true });
+app.use(VueExcelEditor);
 app.use(router);
 app.use(store);
 app.use(i18n);

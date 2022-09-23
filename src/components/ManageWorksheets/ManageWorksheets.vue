@@ -56,7 +56,7 @@
                     :sortable="true"></column>
                 <column field="status" :header="$t('manageWorksheet.status')" :showFilterMenu="false" :sortable="true">
                     <template #body="signature">
-                        {{ $t('status.' + signature.data.status) }}</template>
+                        {{  $t('status.'+ signature.data.status) }}</template>
                 </column>
                 <column field="machineLeader" :header="$t('manageStaff.machineLeader')" :showFilterMenu="false"
                     :sortable="true">
@@ -161,9 +161,35 @@
             <Column :expander="true" headerStyle="width: 3rem" />
             <column field="worksheetNumber" :header="$t('manageWorksheet.worksheetNumber')" :showFilterMenu="false"
                 :sortable="true">
+                <template #body="worksheet">
+                <div v-if="!editing">{{worksheet.data.worksheetNumber}}</div>
+                <div v-if="editing"> <InputText type="text" v-model="worksheet.data.worksheetNumber" /></div>
+                </template>
             </column>
             <column field="machine" :header="$t('manageWorksheet.machine')" :showFilterMenu="false" :sortable="true">
             </column>
+            <column>
+                   <template #body="worksheet">
+                        <div v-if="!editing">
+                            <Button icon="pi pi-user-edit" class="p-button-rounded p-button-info"
+                                @click="startEditingWorksheet(worksheet.data)" />
+                        </div>
+                        <div v-if="editing" class="grid col-12">
+                            <div class="col-12">
+                                <Button icon="pi pi-check" class="p-button-rounded p-button-info"
+                                    @click="editWorksheet(worksheet.data)" />
+                            </div>
+                            <div class="col-12">
+                                <Button icon="pi pi-times" class="p-button-rounded p-button-info"
+                                    @click="cancelWorksheetEditing()" />
+                            </div>
+                            <div class="col-12">
+                                <Button icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                                    @click="deleteWorksheet(worksheet.data)" />
+                            </div>
+                        </div>
+                    </template>
+                    </column>
             <template #expansion="worksheet">
                 <DataTable :value="worksheet.data.signatures" responsiveLayout="scroll" :rowClass="rowClass">
                     <column field="accumulation" :header="$t('manageWorksheet.accumulation')" :showFilterMenu="false"
@@ -224,6 +250,9 @@ export default {
         },
         worksheets(){
             return this.$store.getters["worksheets"]
+        },
+        editing(){
+            return this.$store.getters["editing"]
         }
     },
     methods: {
@@ -240,11 +269,12 @@ export default {
             let table = this.$t('tables.worksheets' + this.newWorksheet.department);
             this.$db.insert(this.worksheetsDB, table, objFormatted);
             this.worksheets.push(this.newWorksheet)
+            this.showWorksheetDialog = false
         },
         addSignature() {
             this.addNewSignature = true
             this.newSignature.id = (Math.random() * 10000).toFixed(0),
-                this.newSignature.status = 'N.D.'
+                this.newSignature.status = '1'
         },
         pushNewSignature() {
             this.newWorksheet.signatures.push(this.newSignature)
@@ -262,7 +292,42 @@ export default {
                 severity: 'info', summary: this.$t('manageWorksheet.worksheetNumber') +
                     ': ' + event.data.worksheetNumber, detail: event.data.publishingCompany, life: 3000
             });
-        }
+        },
+                editWorksheet(worksheet) {
+            let table = this.$t('tables.worksheet' + worksheet.department);
+                  const signaturesFormatted = this.$filters.deepClone(this.newWorksheet.signatures)
+            this.$db.insert(this.worksheetsDB, table, {
+                ...worksheet,
+                id: worksheet.id.trim(),
+                signatures: signaturesFormatted,
+                worksheetNumber: worksheet.worksheetNumber.trim(),
+                publishingCompany: worksheet.publishingCompany.trim(),
+                machine: worksheet.machine.trim(),
+                department: worksheet.department
+            });
+            this.stopEditing();
+        },
+              deleteWorksheet(worksheet) {
+            let table = this.$t('tables.worksheets' + worksheet.department);
+            const newWorksheetsList = this.worksheets.filter((worksheetList) => worksheetList.id !== worksheet.id);
+            this.$store.commit("setWorksheets", newWorksheetsList)
+            this.$db.delete(this.worksheetsDB, table, worksheet.id);
+        },
+                startEditingWorksheet() {
+            this.worksheetsRestore = this.$filters.deepClone(this.worksheets);
+            this.startEditing();
+        },
+        cancelWorksheetEditing() {
+            this.worksheets = this.$filters.deepClone(this.worksheetsRestore);
+            this.worksheetsRestore = [];
+            this.stopEditing();
+        },
+        startEditing() {
+            this.$store.commit('setEditing', true);
+        },
+        stopEditing() {
+            this.$store.commit('setEditing', false);
+        },
     }
 }
 </script>

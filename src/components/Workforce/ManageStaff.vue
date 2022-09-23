@@ -450,7 +450,6 @@
                     @click="openWorkerDialog()" />
             </div>
         </div>
-
         <div class="col-12">
             <DataTable :value="workers" responsiveLayout="scroll" filterDisplay="row" v-model:filters="filters">
                 <Column field="name" :header="$t('manageStaff.name')" :showFilterMenu="false" :sortable="true">
